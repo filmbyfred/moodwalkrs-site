@@ -119,13 +119,18 @@
 
 .hero__wordmark {
   font-family: var(--font-display);
-  font-size: clamp(56px, 17vw, 260px);
+  /* sized so the 10-letter wordmark fits on one line at common viewports */
+  font-size: clamp(42px, 11.5vw, 180px);
   line-height: .85;
-  letter-spacing: -.04em;
+  letter-spacing: -.045em;
   margin: 60px 0 40px;
   text-transform: uppercase;
   display: flex; flex-wrap: wrap; align-items: flex-end;
   row-gap: .05em;
+  white-space: nowrap;
+}
+@media (max-width: 520px) {
+  .hero__wordmark { white-space: normal; letter-spacing: -.03em; }
 }
 .hero__wordmark span {
   display: inline-block;

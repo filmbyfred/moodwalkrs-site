@@ -76,6 +76,22 @@ export const allProjects: Project[] = [
     ratio: "1:1"
   },
   {
+    title: "Fiat Abarth",
+    slug: "fiat-abarth",
+    category: "Automotive Film",
+    tag: "Automotive",
+    client: "Fiat",
+    role: "Direction · Production",
+    year: 2026,
+    cover: "/films/fiat-abarth-poster.jpg",
+    preview: "/films/fiat-abarth-preview.mp4",
+    video: "/films/fiat-abarth.mp4",
+    description: "Automotive film for Fiat Abarth.",
+    gallery: [],
+    span: "md",
+    ratio: "4:5"
+  },
+  {
     title: "Neon Empire",
     slug: "neon-empire",
     category: "Editorial Series",
