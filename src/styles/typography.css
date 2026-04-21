@@ -1,0 +1,57 @@
+/* =========================================================
+   MOODWALKRS — typography.css
+   Typography utility classes
+   ========================================================= */
+
+.text-display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: -.02em;
+  line-height: .95;
+}
+
+.text-mono {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.text-hero {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 17vw, 260px);
+  line-height: .85;
+  letter-spacing: -.04em;
+  text-transform: uppercase;
+}
+
+.text-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 84px);
+  line-height: .95;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+}
+
+.text-section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .3em;
+  color: var(--muted);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.text-section-label::before {
+  content: "";
+  width: 8px; height: 8px;
+  background: var(--acid);
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.text-muted { color: var(--muted); }
+.text-acid  { color: var(--acid); }

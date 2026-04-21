@@ -1,0 +1,53 @@
+---
+interface Props {
+  wordmark: string;
+  tagline: string;
+  desc: string;
+  cta: { label: string; href: string };
+  meta?: { location?: string; status?: string };
+}
+
+const { wordmark, tagline, desc, cta, meta } = Astro.props;
+
+// Split wordmark into letters, marking R letters to get the acid accent
+const letters = wordmark.split('').map((ch) => ({
+  ch,
+  acid: ch.toUpperCase() === 'R'
+}));
+---
+
+<section class="hero" id="top">
+  <div class="hero__meta">
+    <span>{meta?.location ?? ''}</span>
+    <span>{meta?.status ?? ''} <span class="blink">●</span></span>
+  </div>
+
+  <div class="reel-chip" aria-hidden="true">
+    <svg viewBox="0 0 100 100">
+      <defs>
+        <path id="circle" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"/>
+      </defs>
+      <text fill="#8A8880" font-family="JetBrains Mono" font-size="8" letter-spacing="2">
+        <textPath href="#circle">REEL ·2026 · WATCH · REEL ·2026 · WATCH · </textPath>
+      </text>
+    </svg>
+    <div class="play"></div>
+  </div>
+
+  <h1 class="hero__wordmark" aria-label={wordmark}>
+    {letters.map((l) => (
+      <span class={l.acid ? 'r' : ''}>{l.ch}</span>
+    ))}
+  </h1>
+
+  <div class="hero__bottom">
+    <div class="hero__tagline" set:html={tagline}></div>
+    <div>
+      <p class="hero__desc">{desc}</p>
+      <a class="hero__cta" href={cta.href}>
+        {cta.label}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+---
+import { site } from '../data/site';
+---
+
+<nav class="nav">
+  <a class="nav__brand" href="/#top">
+    <span class="dot"></span> {site.brand}<span style="color:var(--acid)">.</span>
+  </a>
+
+  <div class="nav__links">
+    {site.nav.map((item) => (
+      <a href={item.href}>{item.label}</a>
+    ))}
+  </div>
+
+  <a class="nav__cta" href={site.cta.href}>{site.cta.label}</a>
+</nav>

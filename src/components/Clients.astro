@@ -1,0 +1,27 @@
+---
+interface Props {
+  names: string[];
+}
+const { names } = Astro.props;
+---
+
+<div class="clients">
+  <div class="clients__track">
+    <span>
+      {names.map((n, i) => (
+        <>
+          {n}
+          {i < names.length - 1 && <span class="sep">·</span>}
+        </>
+      ))}
+    </span>
+    <span>
+      {names.map((n, i) => (
+        <>
+          {n}
+          {i < names.length - 1 && <span class="sep">·</span>}
+        </>
+      ))}
+    </span>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+---
+interface Props {
+  kicker?: string;
+  kickerRight?: string;
+  text: string;          // Use {curly braces} to wrap acid-highlighted segments
+  metaLeft?: string;
+  metaRight?: string;
+}
+
+const { kicker, kickerRight, text, metaLeft, metaRight } = Astro.props;
+
+// Parse {highlight} markers into segments, then split each segment into words.
+type Seg = { text: string; acid: boolean };
+const segments: Seg[] = [];
+const re = /\{([^}]+)\}/g;
+let last = 0;
+let m: RegExpExecArray | null;
+while ((m = re.exec(text)) !== null) {
+  if (m.index > last) segments.push({ text: text.slice(last, m.index), acid: false });
+  segments.push({ text: m[1], acid: true });
+  last = m.index + m[0].length;
+}
+if (last < text.length) segments.push({ text: text.slice(last), acid: false });
+
+// Break into words (keeping the acid flag)
+type Word = { text: string; acid: boolean };
+const words: Word[] = [];
+segments.forEach((s) => {
+  const parts = s.text.split(/(\s+)/);
+  parts.forEach((p) => {
+    if (p.trim() === '') {
+      if (p.length) words.push({ text: p, acid: false }); // whitespace placeholder
+    } else {
+      words.push({ text: p, acid: s.acid });
+    }
+  });
+});
+---
+
+<section class="manifesto" id="vision">
+  {(kicker || kickerRight) && (
+    <div class="manifesto__meta" style="margin-bottom: 0;">
+      <span>{kicker}</span>
+      <span>{kickerRight}</span>
+    </div>
+  )}
+
+  <p class="manifesto__text" id="manifestoText">
+    {words.map((w) =>
+      w.text.trim() === '' ? (
+        <>{w.text}</>
+      ) : (
+        <span class={`word ${w.acid ? 'acid' : ''}`}>{w.text}</span>
+      )
+    )}
+  </p>
+
+  {(metaLeft || metaRight) && (
+    <div class="manifesto__meta">
+      <span>{metaLeft}</span>
+      <span>{metaRight}</span>
+    </div>
+  )}
+</section>

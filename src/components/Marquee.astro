@@ -1,0 +1,31 @@
+---
+interface Props {
+  words: string[];
+  reverse?: boolean;
+}
+const { words, reverse = false } = Astro.props;
+
+// Duplicate the list so the infinite scroll loop is seamless
+const line = words;
+---
+
+<div class={`marquee ${reverse ? 'marquee--reverse' : ''}`}>
+  <div class="marquee__track">
+    <span>
+      {line.map((w, i) => (
+        <>
+          {w}
+          {i < line.length - 1 && <span class="star">✦</span>}
+        </>
+      ))}
+    </span>
+    <span>
+      {line.map((w, i) => (
+        <>
+          {w}
+          {i < line.length - 1 && <span class="star">✦</span>}
+        </>
+      ))}
+    </span>
+  </div>
+</div>

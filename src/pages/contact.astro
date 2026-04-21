@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Contact from '../components/Contact.astro';
+import homeData from '../../content/home/home.json';
+
+const contact = (homeData.blocks as any[]).find(b => b._template === 'contact');
+---
+
+<BaseLayout
+  title="Contact — Moodwalkrs"
+  description="Work with us, or walk with us. Paris — worldwide."
+>
+  {contact && (
+    <Contact
+      kicker={contact.kicker}
+      title={contact.title}
+      email={contact.email}
+      sub={contact.sub}
+      cta={contact.cta}
+    />
+  )}
+</BaseLayout>

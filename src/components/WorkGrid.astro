@@ -1,0 +1,80 @@
+---
+import { getProjectsInOrder, type Project } from '../data/projects';
+
+interface Props {
+  label: string;
+  title: string;           // HTML allowed (<em>…</em>)
+  rightMeta?: string;
+  slugs: string[];
+  allLink?: { label: string; href: string };
+}
+
+const { label, title, rightMeta, slugs, allLink } = Astro.props;
+
+const projects: Project[] = getProjectsInOrder(slugs);
+---
+
+<section class="section" id="work">
+  <div class="section__head reveal">
+    <div>
+      <div class="section__label">{label}</div>
+      <h2 class="section__title" set:html={title}></h2>
+    </div>
+    {rightMeta && <div class="section__right">{rightMeta}</div>}
+  </div>
+
+  <div class="work-grid">
+    {projects.map((p, i) => {
+      const span = p.span ? `span-${p.span}` : 'span-md';
+      const hasPreview = !!p.preview;
+      return (
+        <a class={`work-card ${span} ${hasPreview ? 'has-video' : ''}`} href={`/project/${p.slug}`}>
+          {hasPreview ? (
+            <>
+              <div class="work-card__media" style={`background-image:url('${p.cover}')`}></div>
+              <video
+                class="work-card__video"
+                src={p.preview}
+                poster={p.cover}
+                muted
+                loop
+                playsinline
+                preload="metadata"
+              ></video>
+            </>
+          ) : (
+            <div class="work-card__media" style={`background-image:url('${p.cover}')`}></div>
+          )}
+          <div class="work-card__index">{String(i + 1).padStart(2, '0')}</div>
+          {p.tag && <div class="work-card__tag">{p.tag}</div>}
+          <div class="work-card__body">
+            <div class="work-card__title">{p.title}</div>
+            <div class="work-card__meta">{p.category}<br/>{p.year}</div>
+          </div>
+          <div class="work-card__arrow">→</div>
+        </a>
+      );
+    })}
+  </div>
+
+  {allLink && (
+    <div class="work-all reveal">
+      <a href={allLink.href}>{allLink.label}</a>
+    </div>
+  )}
+</section>
+
+<script>
+  // Autoplay preview videos on hover, pause + rewind on leave
+  document.querySelectorAll<HTMLAnchorElement>('.work-card.has-video').forEach((card) => {
+    const video = card.querySelector<HTMLVideoElement>('video.work-card__video');
+    if (!video) return;
+    card.addEventListener('mouseenter', () => {
+      video.currentTime = 0;
+      video.play().catch(() => {/* autoplay blocked — no-op */});
+    });
+    card.addEventListener('mouseleave', () => {
+      video.pause();
+    });
+  });
+</script>

@@ -1,0 +1,27 @@
+---
+interface Item { name: string; year: string; }
+interface Props {
+  label: string;
+  title: string;
+  items: Item[];
+}
+const { label, title, items } = Astro.props;
+---
+
+<section class="section" id="awards">
+  <div class="section__head reveal">
+    <div>
+      <div class="section__label">{label}</div>
+      <h2 class="section__title" set:html={title}></h2>
+    </div>
+  </div>
+
+  <div class="awards reveal-stagger">
+    {items.map((a) => (
+      <div class="award">
+        {a.name}
+        <span>{a.year}</span>
+      </div>
+    ))}
+  </div>
+</section>

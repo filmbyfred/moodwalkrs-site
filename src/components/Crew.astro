@@ -1,0 +1,46 @@
+---
+interface Stat { num: string; label: string; }
+interface Role { name: string; count?: string; }
+interface Props {
+  label: string;
+  title: string;
+  intro: string[];
+  stats: Stat[];
+  roles: Role[];
+}
+const { label, title, intro, stats, roles } = Astro.props;
+---
+
+<section class="section" id="crew">
+  <div class="section__head reveal">
+    <div>
+      <div class="section__label">{label}</div>
+      <h2 class="section__title" set:html={title}></h2>
+    </div>
+  </div>
+
+  <div class="crew">
+    <div class="crew__intro reveal">
+      {intro.map((p, i) => (
+        <p class={i === intro.length - 1 ? 'muted' : ''}>{p}</p>
+      ))}
+      <div class="crew__stats">
+        {stats.map((s) => (
+          <div class="stat">
+            <div class="stat__num">{s.num}</div>
+            <div class="stat__label">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="roles reveal-stagger">
+      {roles.map((r) => (
+        <div class="role">
+          <span>{r.name}</span>
+          {r.count && <small>{r.count}</small>}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

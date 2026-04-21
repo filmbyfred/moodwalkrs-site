@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Manifesto from '../components/Manifesto.astro';
+import Crew from '../components/Crew.astro';
+import homeData from '../../content/home/home.json';
+
+const manifesto = (homeData.blocks as any[]).find(b => b._template === 'manifesto');
+const crew = (homeData.blocks as any[]).find(b => b._template === 'crew');
+---
+
+<BaseLayout
+  title="About — Moodwalkrs"
+  description="Moodwalkrs is an AI creative studio bending production time for brands, agencies and productions."
+>
+  <section class="section" style="padding-top: 180px;">
+    <div class="section__head">
+      <div>
+        <div class="section__label">About</div>
+        <h1 class="section__title">A studio, <em>not</em><br/>an agency.</h1>
+      </div>
+    </div>
+  </section>
+
+  {manifesto && (
+    <Manifesto
+      kicker={manifesto.kicker}
+      kickerRight={manifesto.kickerRight}
+      text={manifesto.text}
+      metaLeft={manifesto.metaLeft}
+      metaRight={manifesto.metaRight}
+    />
+  )}
+
+  {crew && (
+    <Crew
+      label={crew.label}
+      title={crew.title}
+      intro={crew.intro}
+      stats={crew.stats}
+      roles={crew.roles}
+    />
+  )}
+</BaseLayout>

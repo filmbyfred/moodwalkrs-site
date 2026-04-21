@@ -1,0 +1,27 @@
+---
+interface Props {
+  kicker: string;
+  title: string;          // HTML allowed (<span class="strike">Or</span>, etc.)
+  email: string;
+  sub?: string;
+  cta?: { label: string; href: string };
+}
+const { kicker, title, email, sub, cta } = Astro.props;
+---
+
+<section class="contact" id="contact">
+  <div class="contact__kicker reveal">{kicker}</div>
+  <h2 class="contact__title reveal" set:html={title}></h2>
+
+  <a class="contact__email" href={`mailto:${email}`}>{email}</a>
+  {sub && <p class="contact__sub">{sub}</p>}
+
+  {cta && (
+    <div>
+      <a class="contact__cta" href={cta.href}>
+        {cta.label}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  )}
+</section>

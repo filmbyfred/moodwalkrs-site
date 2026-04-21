@@ -1,0 +1,28 @@
+---
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div>
+    <div class="footer__brand">{site.brand}<span style="color:var(--acid)">.</span></div>
+    <p class="footer__tag">{site.tagline}<br/>Create. Produce. Accelerate.</p>
+  </div>
+
+  {site.footer.sections.map((sec) => (
+    <div>
+      <h5>{sec.title}</h5>
+      <ul>
+        {sec.links.map((l) => (
+          <li><a href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  ))}
+
+  <div class="footer__bottom">
+    <span>© {year} {site.brand} — All rights reserved.</span>
+    <span>Privacy · Legal · Cookies</span>
+    <span>Made by humans, with machines.</span>
+  </div>
+</footer>

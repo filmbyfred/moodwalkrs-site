@@ -1,0 +1,144 @@
+{
+  "blocks": [
+    {
+      "_template": "hero",
+      "wordmark": "MOODWALKRS",
+      "tagline": "Work with us.\nOr <em>walk</em> with us.",
+      "desc": "A creative studio bending production time with AI — so ideas land sharper, faster, and unmistakably human. We build our own tools. We scale without losing soul.",
+      "cta": {
+        "label": "See selected work",
+        "href": "#work"
+      },
+      "meta": {
+        "location": "[ STUDIO · PARIS / WORLDWIDE ]",
+        "status": "LIVE"
+      }
+    },
+    {
+      "_template": "marquee",
+      "reverse": false,
+      "words": ["Create", "Produce", "Direct", "Accelerate", "Create", "Produce", "Direct", "Accelerate"]
+    },
+    {
+      "_template": "manifesto",
+      "kicker": "[ 01 · VISION ]",
+      "kickerRight": "Our Corpus",
+      "text": "Tools are built to {remove friction}. Processes are shaped to protect intention. Precision becomes a habit. Creativity and quality are the {outcome}.",
+      "metaLeft": "— Moodwalkrs, 2026",
+      "metaRight": "We bend time. We keep the soul."
+    },
+    {
+      "_template": "work_grid",
+      "label": "02 · Selected Work",
+      "title": "Recent <em>plays.</em>",
+      "rightMeta": "2025 — 2026",
+      "slugs": [
+        "nxt-lvl-manifesto",
+        "jeep",
+        "c3-fashion",
+        "neon-empire",
+        "myth-lab",
+        "orbit-ss",
+        "ghost-protocol",
+        "halo-001",
+        "ember-fragrance"
+      ],
+      "allLink": {
+        "label": "All projects (32) →",
+        "href": "/work"
+      }
+    },
+    {
+      "_template": "marquee",
+      "reverse": true,
+      "words": ["Pro-grade AI", "Pro-grade craft", "Pro-grade soul", "Pro-grade speed", "Pro-grade AI", "Pro-grade craft"]
+    },
+    {
+      "_template": "capabilities",
+      "label": "03 · Capabilities",
+      "title": "What we <em>make.</em>",
+      "rightMeta": "Four verbs. One studio. End-to-end, from brief to broadcast.",
+      "items": [
+        {
+          "num": "01 / Create",
+          "title": "Hyper-\nreal AI",
+          "desc": "Photography, film and editorial work indistinguishable from the real — only faster, bolder, and on-brief."
+        },
+        {
+          "num": "02 / Produce",
+          "title": "AI CGI\n& VFX",
+          "desc": "End-to-end production blending in-camera, CG and generative layers into one seamless pipeline."
+        },
+        {
+          "num": "03 / Direct",
+          "title": "Creative\ndirection",
+          "desc": "From positioning to storyboard — we protect intention at every frame, every cut, every pixel."
+        },
+        {
+          "num": "04 / Accelerate",
+          "title": "Custom\ntooling",
+          "desc": "We build in-house pipelines, LoRAs and agent workflows that make your team run at a different clock."
+        }
+      ]
+    },
+    {
+      "_template": "crew",
+      "label": "04 · The Crew",
+      "title": "The <em>Moodwalkrs.</em>",
+      "intro": [
+        "We are not an agency. We are not a post-house. We are a collective of producers, directors and tech-artists who build tools for each other and show up as one team on every shoot.",
+        "Everyone on the project has skin in the game. No account managers. No layers. Just the people who make the thing."
+      ],
+      "stats": [
+        { "num": "14", "label": "Core crew" },
+        { "num": "32+", "label": "AI projects" },
+        { "num": "4×", "label": "Faster" }
+      ],
+      "roles": [
+        { "name": "Producers", "count": "04" },
+        { "name": "Directors", "count": "03" },
+        { "name": "Creative Dir.", "count": "02" },
+        { "name": "Art Directors", "count": "02" },
+        { "name": "Creative Tech", "count": "03" },
+        { "name": "AI / VFX", "count": "04" },
+        { "name": "DOPs", "count": "02" },
+        { "name": "Editors", "count": "03" }
+      ]
+    },
+    {
+      "_template": "clients",
+      "names": [
+        "Zara", "Nike", "Apple", "Valentino", "Uber Eats", "Shein",
+        "Cuisinella", "L'Oréal", "SNCF", "Freepik", "Havas", "Renault",
+        "Audi", "WPP", "BETC", "Publicis"
+      ]
+    },
+    {
+      "_template": "awards",
+      "label": "05 · Recognition",
+      "title": "Press & <em>awards.</em>",
+      "items": [
+        { "name": "Cannes Lions", "year": "25" },
+        { "name": "Vogue", "year": "24/25" },
+        { "name": "Clio Awards", "year": "25" },
+        { "name": "New York Festivals", "year": "25" },
+        { "name": "Forbes", "year": "26" },
+        { "name": "El Sol", "year": "24" },
+        { "name": "London Int. Awards", "year": "25" },
+        { "name": "FIAP", "year": "25" },
+        { "name": "Paris Lift-Off Fest.", "year": "24" }
+      ]
+    },
+    {
+      "_template": "contact",
+      "kicker": "[ 06 · Let's play ]",
+      "title": "Work with us.\n<span class=\"strike\">Or</span> walk with us.",
+      "email": "hello@moodwalkrs.com",
+      "sub": "Paris — worldwide · Open to briefs, crews & noise-makers.",
+      "cta": {
+        "label": "Start a project",
+        "href": "mailto:hello@moodwalkrs.com"
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+---
+interface Item { num: string; title: string; desc: string; }
+interface Props {
+  label: string;
+  title: string;
+  rightMeta?: string;
+  items: Item[];
+}
+const { label, title, rightMeta, items } = Astro.props;
+---
+
+<section class="section" id="services">
+  <div class="section__head reveal">
+    <div>
+      <div class="section__label">{label}</div>
+      <h2 class="section__title" set:html={title}></h2>
+    </div>
+    {rightMeta && <div class="section__right">{rightMeta}</div>}
+  </div>
+
+  <div class="caps reveal-stagger">
+    {items.map((it) => (
+      <div class="cap">
+        <div class="cap__num">{it.num}</div>
+        <div>
+          <h3 class="cap__title">{it.title}</h3>
+          <p class="cap__desc">{it.desc}</p>
+        </div>
+        <div class="cap__arrow">↗</div>
+      </div>
+    ))}
+  </div>
+</section>

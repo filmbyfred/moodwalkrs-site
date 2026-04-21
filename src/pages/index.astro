@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import Manifesto from '../components/Manifesto.astro';
+import WorkGrid from '../components/WorkGrid.astro';
+import Capabilities from '../components/Capabilities.astro';
+import Crew from '../components/Crew.astro';
+import Clients from '../components/Clients.astro';
+import Awards from '../components/Awards.astro';
+import Contact from '../components/Contact.astro';
+
+import homeData from '../../content/home/home.json';
+
+const blocks = homeData.blocks as any[];
+---
+
+<BaseLayout
+  title="Moodwalkrs — AI Creative Studio · Quality Driven"
+  description="Moodwalkrs is an AI creative studio. We create, produce and accelerate pro-grade content for brands, agencies and productions. Work with us, or walk with us."
+>
+  {blocks.map((block) => {
+    switch (block._template) {
+      case 'hero':
+        return (
+          <Hero
+            wordmark={block.wordmark}
+            tagline={block.tagline}
+            desc={block.desc}
+            cta={block.cta}
+            meta={block.meta}
+          />
+        );
+
+      case 'marquee':
+        return <Marquee words={block.words} reverse={block.reverse} />;
+
+      case 'manifesto':
+        return (
+          <Manifesto
+            kicker={block.kicker}
+            kickerRight={block.kickerRight}
+            text={block.text}
+            metaLeft={block.metaLeft}
+            metaRight={block.metaRight}
+          />
+        );
+
+      case 'work_grid':
+        return (
+          <WorkGrid
+            label={block.label}
+            title={block.title}
+            rightMeta={block.rightMeta}
+            slugs={block.slugs}
+            allLink={block.allLink}
+          />
+        );
+
+      case 'capabilities':
+        return (
+          <Capabilities
+            label={block.label}
+            title={block.title}
+            rightMeta={block.rightMeta}
+            items={block.items}
+          />
+        );
+
+      case 'crew':
+        return (
+          <Crew
+            label={block.label}
+            title={block.title}
+            intro={block.intro}
+            stats={block.stats}
+            roles={block.roles}
+          />
+        );
+
+      case 'clients':
+        return <Clients names={block.names} />;
+
+      case 'awards':
+        return <Awards label={block.label} title={block.title} items={block.items} />;
+
+      case 'contact':
+        return (
+          <Contact
+            kicker={block.kicker}
+            title={block.title}
+            email={block.email}
+            sub={block.sub}
+            cta={block.cta}
+          />
+        );
+
+      default:
+        return null;
+    }
+  })}
+</BaseLayout>

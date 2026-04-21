@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+import '../styles/typography.css';
+import '../styles/components.css';
+
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Cursor from '../components/Cursor.astro';
+import Grain from '../components/Grain.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "Moodwalkrs — AI Creative Studio · Quality Driven",
+  description = "Moodwalkrs is an AI creative studio. We create, produce and accelerate pro-grade content for brands, agencies and productions. Work with us, or walk with us.",
+  ogImage = "/images/og.jpg"
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='68' font-family='Arial Black' font-size='60' text-anchor='middle' fill='%23D8FF3A'%3EM%3C/text%3E%3C/svg%3E" />
+
+  <!-- OG -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__bar"></div>
+    <div class="preloader__label">MOODWALKRS · LOADING · 2026</div>
+  </div>
+
+  <Grain />
+  <Cursor />
+  <Nav />
+
+  <main>
+    <slot />
+  </main>
+
+  <Footer />
+
+  <script>
+    import { initLenis } from '../scripts/lenis';
+    import { initGSAP } from '../scripts/gsap-setup';
+    import { initCursor } from '../scripts/cursor';
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('preloader')?.classList.add('done');
+      }, 600);
+    });
+
+    initLenis();
+    initCursor();
+    // wait one frame so reveal elements exist before GSAP binds
+    requestAnimationFrame(() => initGSAP());
+  </script>
+</body>
+</html>

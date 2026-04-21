@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Capabilities from '../components/Capabilities.astro';
+import homeData from '../../content/home/home.json';
+
+const caps = (homeData.blocks as any[]).find(b => b._template === 'capabilities');
+---
+
+<BaseLayout
+  title="Services — Moodwalkrs"
+  description="Capabilities: Hyper-real AI, AI CGI & VFX, Creative direction, Custom tooling."
+>
+  <section class="section" style="padding-top: 180px;">
+    <div class="section__head">
+      <div>
+        <div class="section__label">Services</div>
+        <h1 class="section__title">Four verbs. <em>One</em> studio.</h1>
+      </div>
+    </div>
+  </section>
+
+  {caps && (
+    <Capabilities
+      label={caps.label}
+      title={caps.title}
+      rightMeta={caps.rightMeta}
+      items={caps.items}
+    />
+  )}
+</BaseLayout>

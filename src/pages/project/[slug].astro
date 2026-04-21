@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { allProjects } from '../../data/projects';
+
+export function getStaticPaths() {
+  return allProjects.map((p) => ({
+    params: { slug: p.slug },
+    props: { project: p },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout title={`${project.title} — Moodwalkrs`} description={project.description}>
+  <section class="project">
+    <a class="project__back" href="/#work">← Back to work</a>
+
+    <h1 class="project__title">{project.title}</h1>
+
+    <div class="project__meta">
+      <div>
+        Client
+        <strong>{project.client ?? '—'}</strong>
+      </div>
+      <div>
+        Category
+        <strong>{project.category}</strong>
+      </div>
+      <div>
+        Role
+        <strong>{project.role ?? '—'}</strong>
+      </div>
+      <div>
+        Year
+        <strong>{project.year}</strong>
+      </div>
+    </div>
+
+    {project.video && project.video.startsWith('/') ? (
+      <video
+        class="project__video"
+        src={project.video}
+        poster={project.cover}
+        controls
+        playsinline
+        preload="metadata"
+      ></video>
+    ) : project.video ? (
+      <div class="project__embed">
+        <iframe src={project.video} frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    ) : (
+      <div class="project__cover" style={`background-image:url('${project.cover}')`}></div>
+    )}
+
+    <p class="project__desc">{project.description}</p>
+
+    {project.gallery && project.gallery.length > 0 && (
+      <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 40px;">
+        {project.gallery.map((g) => (
+          <img src={g} alt={project.title} loading="lazy" style="width:100%; height:auto; border-radius:4px;" />
+        ))}
+      </div>
+    )}
+
+    {project.credits && Object.keys(project.credits).length > 0 && (
+      <div style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--line); display:grid; grid-template-columns: repeat(2, 1fr); gap: 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted);">
+        {Object.entries(project.credits).map(([role, name]) => (
+          <div>{role}: <span style="color:var(--fg)">{name}</span></div>
+        ))}
+      </div>
+    )}
+  </section>
+</BaseLayout>
