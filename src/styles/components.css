@@ -99,7 +99,9 @@
 }
 .nav__cta:hover { background: #fff; color: #000; }
 
-@media (max-width: 800px) { .nav__links { display: none; } }
+/* Tighter nav spacing on medium screens, then links hide below 640px (phones) */
+@media (max-width: 900px) { .nav__links { gap: 18px; font-size: 11px; } }
+@media (max-width: 640px) { .nav__links { display: none; } }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -110,9 +112,13 @@
   overflow: hidden;
 }
 .hero__meta {
-  display: flex; justify-content: space-between;
+  display: flex; justify-content: space-between; flex-wrap: wrap;
+  row-gap: 6px;
   font-family: var(--font-mono); font-size: 11px; letter-spacing: .25em;
   color: var(--muted); text-transform: uppercase;
+}
+@media (max-width: 520px) {
+  .hero__meta { font-size: 10px; letter-spacing: .18em; }
 }
 .hero__meta .blink { color: var(--acid); animation: blink 1.2s infinite step-end; }
 @keyframes blink { 50% { opacity: 0; } }
@@ -120,17 +126,21 @@
 .hero__wordmark {
   font-family: var(--font-display);
   /* sized so the 10-letter wordmark fits on one line at common viewports */
-  font-size: clamp(42px, 11.5vw, 180px);
+  font-size: clamp(38px, 11.5vw, 180px);
   line-height: .85;
-  letter-spacing: -.045em;
+  letter-spacing: -.05em;
   margin: 60px 0 40px;
   text-transform: uppercase;
   display: flex; flex-wrap: wrap; align-items: flex-end;
   row-gap: .05em;
   white-space: nowrap;
 }
-@media (max-width: 520px) {
-  .hero__wordmark { white-space: normal; letter-spacing: -.03em; }
+/* On very narrow phones the wordmark is reduced further so the 10 letters stay on one line */
+@media (max-width: 400px) {
+  .hero__wordmark {
+    font-size: 9.5vw;
+    letter-spacing: -.06em;
+  }
 }
 .hero__wordmark span {
   display: inline-block;
