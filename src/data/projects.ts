@@ -1,164 +1,198 @@
 // ===== CENTRALIZED PROJECT DATA =====
-// Edit this file to add / remove / reorder projects.
+// All real Moodwalkrs work. Edit this file to add / remove / reorder projects.
 // Then reference the slug(s) in content/home/home.json → work_grid.slugs[]
 // to control which ones show up (and in which order) on the homepage.
 
 export type Span = "sm" | "md" | "lg" | "xl";
-export type Ratio = "1:1" | "4:5" | "3:2" | "16:9" | "16:10";
+export type Ratio = "1:1" | "4:5" | "9:16" | "3:2" | "16:9" | "16:10";
 
 export interface Project {
   title: string;
   slug: string;            // URL: /project/{slug}
-  category: string;        // "Fashion Film", "Commercial", "CGI Product", ...
+  category: string;        // "Commercial", "Fashion Edito", "Documentary", ...
   tag?: string;            // small pill on the card (optional)
   client?: string;
   role?: string;
   year: number;
-  cover: string;           // card image (URL or /images/... path) — used as <video poster> too
-  preview?: string;        // /films/{slug}-preview.mp4 — lightweight loop auto-played on hover
+  cover: string;           // card image (URL or /films/... path) — used as <video poster> too
+  preview?: string;        // /films/{slug}-preview.mp4 — lightweight loop on hover
   video?: string;          // /films/{slug}.mp4 (local) OR Vimeo / YouTube embed URL
   description: string;
   gallery?: string[];
   credits?: Record<string, string>;
-  // Bento layout hints (used by WorkGrid.astro):
-  span?: Span;             // sm: 4cols · md: 5-6cols · lg: 7-8cols · xl: full
+  span?: Span;             // bento layout hint
   ratio?: Ratio;
 }
 
 export const allProjects: Project[] = [
-  // ===== FILMS — real Moodwalkrs work =====
   {
-    title: "NXT LVL — Manifesto",
+    title: "Notre Agent — The French Production",
+    slug: "notre-agent",
+    category: "Documentary Trailer",
+    tag: "Documentary",
+    client: "The French Production",
+    role: "Direction · Production",
+    year: 2026,
+    cover: "/films/notre-agent-poster.jpg",
+    preview: "/films/notre-agent-preview.mp4",
+    video: "/films/notre-agent.mp4",
+    description: "Trailer for the documentary 'Notre Agent', produced with The French Production.",
+    gallery: [],
+    span: "lg",
+    ratio: "16:9"
+  },
+  {
+    title: "After Her",
+    slug: "after-her",
+    category: "Fashion Edito",
+    tag: "Editorial",
+    role: "Direction · Post",
+    year: 2025,
+    cover: "/films/after-her-poster.jpg",
+    preview: "/films/after-her-preview.mp4",
+    video: "/films/after-her.mp4",
+    description: "Editorial fashion film with solo voice — 'After Her'.",
+    gallery: [],
+    span: "md",
+    ratio: "9:16"
+  },
+  {
+    title: "Avatar — Editorial",
+    slug: "avatar-edito",
+    category: "Fashion Edito",
+    tag: "Editorial",
+    role: "Direction · AI · Post",
+    year: 2025,
+    cover: "/films/avatar-edito-poster.jpg",
+    preview: "/films/avatar-edito-preview.mp4",
+    video: "/films/avatar-edito.mp4",
+    description: "Fashion editorial exploring AI-generated avatars.",
+    gallery: [],
+    span: "md",
+    ratio: "9:16"
+  },
+  {
+    title: "Jeep — Wrangler",
+    slug: "jeep-wrangler",
+    category: "Automotive Spec",
+    tag: "Commercial",
+    client: "Jeep",
+    role: "Direction · Production · Post",
+    year: 2026,
+    cover: "/films/jeep-wrangler-poster.jpg",
+    preview: "/films/jeep-wrangler-preview.mp4",
+    video: "/films/jeep-wrangler.mp4",
+    description: "Spec commercial for the Jeep Wrangler — directed and produced by Moodwalkrs.",
+    gallery: [],
+    span: "lg",
+    ratio: "16:9"
+  },
+  {
+    title: "C3 — Citroën",
+    slug: "c3-citroen",
+    category: "Automotive Spec",
+    tag: "Commercial",
+    client: "Citroën",
+    role: "Direction · Post",
+    year: 2026,
+    cover: "/films/c3-citroen-poster.jpg",
+    preview: "/films/c3-citroen-preview.mp4",
+    video: "/films/c3-citroen.mp4",
+    description: "Spec film for the Citroën C3.",
+    gallery: [],
+    span: "lg",
+    ratio: "16:9"
+  },
+  {
+    title: "INDEX — Lightswitch",
+    slug: "index-lightswitch",
+    category: "INDEX Series",
+    tag: "Series",
+    role: "Direction",
+    year: 2025,
+    cover: "/films/index-lightswitch-poster.jpg",
+    preview: "/films/index-lightswitch-preview.mp4",
+    video: "/films/index-lightswitch.mp4",
+    description: "INDEX series — 'Lightswitch' chapter.",
+    gallery: [],
+    span: "md",
+    ratio: "9:16"
+  },
+  {
+    title: "NXT LVL — Club Manifesto",
     slug: "nxt-lvl-manifesto",
-    category: "Manifesto Film",
-    tag: "Film",
+    category: "Brand Film",
+    tag: "Manifesto",
     client: "NXT LVL",
     role: "Direction · Production",
     year: 2026,
     cover: "/films/nxt-lvl-manifesto-poster.jpg",
     preview: "/films/nxt-lvl-manifesto-preview.mp4",
     video: "/films/nxt-lvl-manifesto.mp4",
-    description: "A multi-panel manifesto piece opening the NXT LVL chapter.",
+    description: "NXT LVL club manifesto — multi-panel commercial.",
+    gallery: [],
+    span: "md",
+    ratio: "16:9"
+  },
+  {
+    title: "Speed Sisters",
+    slug: "speed-sisters",
+    category: "Experimental Film",
+    tag: "Experimental",
+    role: "Direction",
+    year: 2025,
+    cover: "/films/speed-sisters-poster.jpg",
+    preview: "/films/speed-sisters-preview.mp4",
+    video: "/films/speed-sisters.mp4",
+    description: "Experimental short — Speed Sisters.",
     gallery: [],
     span: "lg",
     ratio: "16:9"
   },
   {
-    title: "Jeep",
-    slug: "jeep",
-    category: "Commercial",
-    tag: "Commercial",
-    client: "Jeep",
-    role: "Direction · Production · Post",
+    title: "3D Process — Control Car",
+    slug: "3d-process-control",
+    category: "3D Demo / R&D",
+    tag: "R&D",
+    role: "Tech · 3D",
     year: 2026,
-    cover: "/films/jeep-poster.jpg",
-    preview: "/films/jeep-preview.mp4",
-    video: "/films/jeep.mp4",
-    description: "A Jeep commercial film produced end-to-end by Moodwalkrs.",
-    gallery: [],
-    span: "md",
-    ratio: "4:5"
-  },
-  {
-    title: "C3 — Fashion",
-    slug: "c3-fashion",
-    category: "Fashion Film",
-    tag: "Fashion",
-    client: "C3",
-    role: "Direction · Post",
-    year: 2026,
-    cover: "/films/c3-fashion-poster.jpg",
-    preview: "/films/c3-fashion-preview.mp4",
-    video: "/films/c3-fashion.mp4",
-    description: "A fashion film for C3.",
+    cover: "/films/3d-process-control-poster.jpg",
+    preview: "/films/3d-process-control-preview.mp4",
+    video: "/films/3d-process-control.mp4",
+    description: "Comparative 3D process demo — control of a CG car.",
     gallery: [],
     span: "sm",
     ratio: "1:1"
   },
   {
-    title: "Fiat Abarth",
-    slug: "fiat-abarth",
-    category: "Automotive Film",
-    tag: "Automotive",
-    client: "Fiat",
-    role: "Direction · Production",
-    year: 2026,
-    cover: "/films/fiat-abarth-poster.jpg",
-    preview: "/films/fiat-abarth-preview.mp4",
-    video: "/films/fiat-abarth.mp4",
-    description: "Automotive film for Fiat Abarth.",
-    gallery: [],
-    span: "md",
-    ratio: "4:5"
-  },
-  {
-    title: "Neon Empire",
-    slug: "neon-empire",
-    category: "Editorial Series",
+    title: "INDEX — Break",
+    slug: "index-break",
+    category: "INDEX Series",
     tag: "Series",
+    role: "Direction",
     year: 2025,
-    cover: "https://picsum.photos/seed/mw-neon/1200/1200",
-    description: "Editorial series mixing neon photography and AI compositing for a fashion magazine.",
+    cover: "/films/index-break-poster.jpg",
+    preview: "/films/index-break-preview.mp4",
+    video: "/films/index-break.mp4",
+    description: "INDEX series — 'Break' chapter.",
     gallery: [],
     span: "sm",
     ratio: "1:1"
   },
   {
-    title: "Myth Lab",
-    slug: "myth-lab",
-    category: "Brand Film",
+    title: "INDEX",
+    slug: "index",
+    category: "INDEX Series",
+    tag: "Series",
+    role: "Direction",
     year: 2025,
-    cover: "https://picsum.photos/seed/mw-myth/1200/1200",
-    description: "A brand film exploring modern mythology with fully generative worlds.",
+    cover: "/films/index-poster.jpg",
+    preview: "/films/index-preview.mp4",
+    video: "/films/index.mp4",
+    description: "INDEX series — opening chapter.",
     gallery: [],
     span: "sm",
     ratio: "1:1"
-  },
-  {
-    title: "Orbit — Spring / Summer",
-    slug: "orbit-ss",
-    category: "Campaign",
-    tag: "Campaign",
-    year: 2026,
-    cover: "https://picsum.photos/seed/mw-orbit/1600/900",
-    description: "SS26 fashion campaign — film, stills and motion delivered end-to-end.",
-    gallery: [],
-    span: "lg",
-    ratio: "16:9"
-  },
-  {
-    title: "Ghost Protocol",
-    slug: "ghost-protocol",
-    category: "Beauty Campaign",
-    year: 2025,
-    cover: "https://picsum.photos/seed/mw-ghost/1200/1500",
-    description: "Beauty campaign with a couture twist — generative skin, real talent.",
-    gallery: [],
-    span: "md",
-    ratio: "4:5"
-  },
-  {
-    title: "Halo 001",
-    slug: "halo-001",
-    category: "Tech Launch",
-    tag: "Product",
-    year: 2026,
-    cover: "https://picsum.photos/seed/mw-halo/1600/1000",
-    description: "Product launch film blending in-camera macro with AI environments.",
-    gallery: [],
-    span: "lg",
-    ratio: "16:10"
-  },
-  {
-    title: "Ember — Fragrance",
-    slug: "ember-fragrance",
-    category: "Fragrance Campaign",
-    year: 2026,
-    cover: "https://picsum.photos/seed/mw-ember/1600/1000",
-    description: "A fragrance campaign with heat, light and smoke simulated at film-grade.",
-    gallery: [],
-    span: "lg",
-    ratio: "16:10"
   }
 ];
 
