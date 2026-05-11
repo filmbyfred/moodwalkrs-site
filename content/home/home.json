@@ -4,7 +4,7 @@
       "_template": "hero",
       "wordmark": "MOODWALKRS",
       "tagline": "Work with us.\nOr <em>walk</em> with us.",
-      "desc": "A creative studio bending production time with AI — so ideas land sharper, faster, and unmistakably human. We build our own tools. We scale without losing soul.",
+      "desc": "A collective AI Creative Studio — quality driven. We create, produce and accelerate premium visuals — without sacrificing taste or intention.",
       "cta": {
         "label": "See selected work",
         "href": "#work"
@@ -24,6 +24,7 @@
       "kicker": "[ 01 · VISION ]",
       "kickerRight": "Our Corpus",
       "text": "Tools are built to {remove friction}. Processes are shaped to protect intention. Precision becomes a habit. Creativity and quality are the {outcome}.",
+      "quote": "We need to move fast through AI timespace. Bending production time is the key to give creativity space.",
       "metaLeft": "— Moodwalkrs, 2026",
       "metaRight": "We bend time. We keep the soul."
     },
@@ -85,17 +86,41 @@
     },
     {
       "_template": "crew",
-      "label": "04 · The Crew",
+      "label": "04 · The Collective",
       "title": "The <em>Moodwalkrs.</em>",
       "intro": [
-        "We are not an agency. We are not a post-house. We are a collective of producers, directors and tech-artists who build tools for each other and show up as one team on every shoot.",
-        "Everyone on the project has skin in the game. No account managers. No layers. Just the people who make the thing."
+        "MOODWALKRS is a collective AI Creative Studio — quality driven.",
+        "We bring together producers, creative directors, directors, art directors, creative tech, AI & VFX experts, DOPs and editors to create, produce, and accelerate premium visuals — without sacrificing taste or intention."
       ],
       "stats": [
-        { "num": "14", "label": "Core crew" },
-        { "num": "32+", "label": "AI projects" },
-        { "num": "4×", "label": "Faster" }
+        { "num": "04", "label": "Founders" },
+        { "num": "11", "label": "Films shipped" },
+        { "num": "1×", "label": "Collective" }
       ],
+      "foundersLabel": "Founders",
+      "founders": [
+        {
+          "name": "Stéphane “Corpus” Juffé",
+          "role": "Director · Producer · Creative Director",
+          "bio": "Paris-based, award-winning Director / Producer / Creative Director. 20+ years across CGI, video and interactive content. Creative technologist and digital entrepreneur."
+        },
+        {
+          "name": "Thibaut Mitre",
+          "role": "Director · Producer",
+          "bio": "Director and producer working across brand content, music videos and fashion."
+        },
+        {
+          "name": "Aurélien Winterman",
+          "role": "Producer · Executive Production",
+          "bio": "Producer with an executive-production profile — cinema-focused credits across official film directories."
+        },
+        {
+          "name": "Fred de Pontcharra",
+          "role": "Director · Photographer",
+          "bio": "Paris-based film director and photographer — music videos, commercials and artistic content, focused on bold cinematic storytelling."
+        }
+      ],
+      "rolesLabel": "Disciplines",
       "roles": [
         { "name": "Producers", "count": "04" },
         { "name": "Directors", "count": "03" },
@@ -105,7 +130,8 @@
         { "name": "AI / VFX", "count": "04" },
         { "name": "DOPs", "count": "02" },
         { "name": "Editors", "count": "03" }
-      ]
+      ],
+      "closing": "We build our own tools. We scale without losing soul. We create faster — with precision & quality."
     },
     {
       "_template": "clients",
@@ -116,24 +142,8 @@
       ]
     },
     {
-      "_template": "awards",
-      "label": "05 · Recognition",
-      "title": "Press & <em>awards.</em>",
-      "items": [
-        { "name": "Cannes Lions", "year": "25" },
-        { "name": "Vogue", "year": "24/25" },
-        { "name": "Clio Awards", "year": "25" },
-        { "name": "New York Festivals", "year": "25" },
-        { "name": "Forbes", "year": "26" },
-        { "name": "El Sol", "year": "24" },
-        { "name": "London Int. Awards", "year": "25" },
-        { "name": "FIAP", "year": "25" },
-        { "name": "Paris Lift-Off Fest.", "year": "24" }
-      ]
-    },
-    {
       "_template": "contact",
-      "kicker": "[ 06 · Let's play ]",
+      "kicker": "[ 05 · Let's play ]",
       "title": "Work with us.\n<span class=\"strike\">Or</span> walk with us.",
       "email": "hello@moodwalkrs.com",
       "sub": "Paris — worldwide · Open to briefs, crews & noise-makers.",

@@ -3,11 +3,12 @@ interface Props {
   kicker?: string;
   kickerRight?: string;
   text: string;          // Use {curly braces} to wrap acid-highlighted segments
+  quote?: string;        // Optional pull quote rendered below the main text
   metaLeft?: string;
   metaRight?: string;
 }
 
-const { kicker, kickerRight, text, metaLeft, metaRight } = Astro.props;
+const { kicker, kickerRight, text, quote, metaLeft, metaRight } = Astro.props;
 
 // Parse {highlight} markers into segments, then split each segment into words.
 type Seg = { text: string; acid: boolean };
@@ -54,6 +55,13 @@ segments.forEach((s) => {
       )
     )}
   </p>
+
+  {quote && (
+    <blockquote class="manifesto__quote">
+      <span class="manifesto__quote-mark" aria-hidden="true">“</span>
+      <p>{quote}</p>
+    </blockquote>
+  )}
 
   {(metaLeft || metaRight) && (
     <div class="manifesto__meta">

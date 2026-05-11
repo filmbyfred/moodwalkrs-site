@@ -297,11 +297,39 @@
   font-size: clamp(30px, 5.5vw, 86px);
   line-height: 1; letter-spacing: -.02em;
   text-transform: uppercase; max-width: 18ch;
-  margin: 40px 0 80px;
+  margin: 40px 0 60px;
 }
 .manifesto__text .word { display: inline-block; opacity: .18; transition: opacity .4s var(--ease); }
 .manifesto__text .word.in { opacity: 1; }
 .manifesto__text .acid { color: var(--acid); }
+
+.manifesto__quote {
+  position: relative;
+  margin: 0 0 60px;
+  padding: 24px 0 24px 60px;
+  border-left: 2px solid var(--acid);
+  max-width: 60ch;
+}
+.manifesto__quote p {
+  font-family: var(--font-body);
+  font-size: clamp(18px, 1.8vw, 24px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--fg);
+}
+.manifesto__quote-mark {
+  position: absolute;
+  left: 12px; top: -8px;
+  font-family: var(--font-display);
+  font-size: 80px;
+  line-height: 1;
+  color: var(--acid);
+}
+@media (max-width: 600px) {
+  .manifesto__quote { padding-left: 40px; }
+  .manifesto__quote-mark { font-size: 56px; left: 6px; top: -4px; }
+}
 
 /* ---------- Work grid (bento) ---------- */
 .work-grid {
@@ -479,6 +507,85 @@
 .role:hover small { color: var(--bg); }
 
 @media (max-width: 900px) { .crew { grid-template-columns: 1fr; } }
+
+/* Roles wrapper with label */
+.roles-wrap { display: flex; flex-direction: column; gap: 12px; }
+.roles-label {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .3em;
+  color: var(--muted); text-transform: uppercase;
+}
+
+/* ---------- Founders ---------- */
+.founders {
+  margin-top: 80px;
+  padding-top: 60px;
+  border-top: 1px solid var(--line);
+}
+.founders__head {
+  margin-bottom: 32px;
+}
+.founders__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.founder {
+  position: relative;
+  padding: 32px 30px 36px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 12px;
+  transition: background .4s var(--ease);
+}
+.founder:hover { background: var(--bg-2); }
+.founder__index {
+  position: absolute; top: 18px; right: 22px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .25em;
+  color: var(--muted);
+}
+.founder__name {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.2vw, 32px);
+  line-height: 1; letter-spacing: -.01em;
+  text-transform: uppercase;
+  max-width: 14ch;
+}
+.founder:hover .founder__name { color: var(--acid); transition: color .4s var(--ease); }
+.founder__role {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em;
+  color: var(--acid); text-transform: uppercase;
+}
+.founder__bio {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+  max-width: 44ch;
+}
+@media (max-width: 760px) {
+  .founders__grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Crew closing ---------- */
+.crew__closing {
+  margin-top: 80px;
+  padding: 50px var(--pad-x);
+  margin-left: calc(var(--pad-x) * -1);
+  margin-right: calc(var(--pad-x) * -1);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.crew__closing p {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.2vw, 32px);
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  max-width: 30ch;
+  margin: 0 auto;
+}
 
 /* ---------- Clients ---------- */
 .clients {

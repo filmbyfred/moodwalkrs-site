@@ -1,14 +1,24 @@
 ---
 interface Stat { num: string; label: string; }
 interface Role { name: string; count?: string; }
+interface Founder { name: string; role: string; bio: string; }
+
 interface Props {
   label: string;
   title: string;
   intro: string[];
   stats: Stat[];
+  foundersLabel?: string;
+  founders?: Founder[];
+  rolesLabel?: string;
   roles: Role[];
+  closing?: string;
 }
-const { label, title, intro, stats, roles } = Astro.props;
+const {
+  label, title, intro, stats,
+  foundersLabel = "Founders", founders = [],
+  rolesLabel = "Disciplines", roles, closing
+} = Astro.props;
 ---
 
 <section class="section" id="crew">
@@ -34,13 +44,40 @@ const { label, title, intro, stats, roles } = Astro.props;
       </div>
     </div>
 
-    <div class="roles reveal-stagger">
-      {roles.map((r) => (
-        <div class="role">
-          <span>{r.name}</span>
-          {r.count && <small>{r.count}</small>}
-        </div>
-      ))}
+    <div class="roles-wrap">
+      <div class="roles-label">{rolesLabel}</div>
+      <div class="roles reveal-stagger">
+        {roles.map((r) => (
+          <div class="role">
+            <span>{r.name}</span>
+            {r.count && <small>{r.count}</small>}
+          </div>
+        ))}
+      </div>
     </div>
   </div>
+
+  {founders.length > 0 && (
+    <div class="founders">
+      <div class="founders__head reveal">
+        <div class="section__label">{foundersLabel}</div>
+      </div>
+      <div class="founders__grid reveal-stagger">
+        {founders.map((f, i) => (
+          <article class="founder">
+            <div class="founder__index">{String(i + 1).padStart(2, '0')}</div>
+            <h3 class="founder__name">{f.name}</h3>
+            <div class="founder__role">{f.role}</div>
+            <p class="founder__bio">{f.bio}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {closing && (
+    <div class="crew__closing reveal">
+      <p>{closing}</p>
+    </div>
+  )}
 </section>

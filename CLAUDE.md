@@ -86,12 +86,12 @@ La homepage est construite par **blocs** dans `content/home/home.json`. Chaque b
 |-------------------|-------------------------------------------------------|-----------------|
 | `hero`            | Wordmark MOODWALKRS + tagline + CTA                   | `tagline`, `desc`, `cta` |
 | `marquee`         | Bande défilante (texte répété)                        | `words[]`, `reverse` |
-| `manifesto`       | Bloc corpus mot-par-mot revealing au scroll           | `text`, `highlight[]`, `meta` |
-| `work_grid`       | Grille bento des projets (lit `src/data/projects.ts`) | `slugs[]` (ordre), `layout` |
+| `manifesto`       | Bloc corpus mot-par-mot revealing au scroll + citation optionnelle | `text`, `quote`, `metaLeft`, `metaRight` |
+| `work_grid`       | Grille bento des projets (lit `src/data/projects.ts`) | `slugs[]` (ordre), `allLink` |
 | `capabilities`    | 4 verbes                                              | `items[]` |
-| `crew`            | Intro + stats + mosaïque rôles                        | `intro`, `stats[]`, `roles[]` |
+| `crew`            | Intro + stats + founders + disciplines + closing      | `intro`, `stats[]`, `founders[]`, `roles[]`, `closing` |
 | `clients`         | Scroller horizontal de noms clients                   | `names[]` |
-| `awards`          | Grille awards + presse                                | `items[]` |
+| `awards`          | Grille awards + presse — composant **disponible mais désactivé** en attendant de vrais awards. Pour réactiver : ajouter un bloc `{ "_template": "awards", "label": "05 · Recognition", "title": "Press & <em>awards.</em>", "items": [{"name": "...", "year": "..."}] }` dans `home.json` | `items[]` |
 | `contact`         | Bloc final Work / Walk + email                        | `email`, `cta` |
 
 Ajouter / retirer un bloc : éditer le tableau `blocks` dans `home.json`. L'ordre dans le JSON = l'ordre à l'écran.
