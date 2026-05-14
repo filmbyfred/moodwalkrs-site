@@ -163,8 +163,8 @@ export const allProjects: Project[] = [
     video: "/films/c3-citroen.mp4",
     description: "Spec film for the Citroën C3.",
     gallery: [],
-    span: "lg",
-    ratio: "16:9"
+    span: "sm",
+    ratio: "1:1"
   },
   {
     title: "INDEX — Lightswitch",
@@ -209,8 +209,8 @@ export const allProjects: Project[] = [
     video: "/films/processing-art-gallery.mp4",
     description: "Generative art piece for a gallery installation.",
     gallery: [],
-    span: "sm",
-    ratio: "1:1"
+    span: "lg",
+    ratio: "16:9"
   },
   {
     title: "Shein",
