@@ -110,6 +110,36 @@
   padding: 140px var(--pad-x) 60px;
   display: flex; flex-direction: column; justify-content: space-between;
   overflow: hidden;
+  isolation: isolate;
+}
+
+/* Background video loop (Processing — Art Gallery) */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  opacity: 0.55;
+  filter: saturate(1.05) contrast(1.05);
+  pointer-events: none;
+}
+.hero__bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(10, 10, 10, 0.35) 0%, rgba(10, 10, 10, 0.78) 60%, rgba(10, 10, 10, 0.92) 100%),
+    linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.45) 50%, rgba(10, 10, 10, 0.92) 100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__bg { display: none; }
+}
+@media (max-width: 600px) {
+  /* Slightly stronger overlay on phones for readability */
+  .hero__bg { opacity: 0.45; }
 }
 .hero__meta {
   display: flex; justify-content: space-between; flex-wrap: wrap;
