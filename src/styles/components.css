@@ -156,20 +156,26 @@
 .hero__wordmark {
   font-family: var(--font-display);
   /* sized so the 10-letter wordmark fits on one line at common viewports */
-  font-size: clamp(38px, 11.5vw, 180px);
+  font-size: clamp(28px, 10.8vw, 180px);
   line-height: .85;
-  letter-spacing: -.05em;
+  letter-spacing: -.055em;
   margin: 60px 0 40px;
   text-transform: uppercase;
-  display: flex; flex-wrap: wrap; align-items: flex-end;
-  row-gap: .05em;
+  display: flex; flex-wrap: nowrap; align-items: flex-end;
   white-space: nowrap;
+  width: 100%;
 }
-/* On very narrow phones the wordmark is reduced further so the 10 letters stay on one line */
-@media (max-width: 400px) {
+/* iPhone-grade tightening so MOODWALKRS always stays on one line, even on 320px screens */
+@media (max-width: 480px) {
   .hero__wordmark {
-    font-size: 9.5vw;
-    letter-spacing: -.06em;
+    font-size: 10.5vw;
+    letter-spacing: -.065em;
+  }
+}
+@media (max-width: 360px) {
+  .hero__wordmark {
+    font-size: 10vw;
+    letter-spacing: -.07em;
   }
 }
 .hero__wordmark span {
@@ -259,7 +265,17 @@
   border-top: 6px solid transparent; border-bottom: 6px solid transparent;
   margin-left: 3px;
 }
-@media (max-width: 900px) { .reel-chip { display: none; } }
+/* Smaller reel chip on tablets, repositioned to not collide with nav on phones */
+@media (max-width: 900px) {
+  .reel-chip { width: 100px; height: 100px; top: 100px; }
+  .reel-chip .play { width: 26px; height: 26px; }
+  .reel-chip .play::after { border-left-width: 7px; border-top-width: 5px; border-bottom-width: 5px; margin-left: 2px; }
+}
+@media (max-width: 520px) {
+  .reel-chip { width: 76px; height: 76px; top: 88px; right: 14px; }
+  .reel-chip .play { width: 20px; height: 20px; }
+  .reel-chip .play::after { border-left-width: 5px; border-top-width: 4px; border-bottom-width: 4px; margin-left: 1px; }
+}
 
 /* ---------- Marquee ---------- */
 .marquee {
