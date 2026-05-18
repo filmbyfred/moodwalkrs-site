@@ -15,37 +15,40 @@
   /* "acid" name kept for compatibility — now a chrome silver */
   --acid: #DCDCE2;
   --acid-dim: #8F8F96;
-  /* Chrome 3D gradient — multiple specular bands with sharp horizon line */
+  /* Chrome 3D — stacked specular highlights as radial gradients
+     overlay the main metallic linear, mimicking environment reflection. */
   --chrome-text:
+    radial-gradient(ellipse 60% 18% at 50% 12%, rgba(255,255,255,.95) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 12% at 22% 35%, rgba(255,255,255,.5) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 10% at 70% 82%, rgba(255,255,255,.55) 0%, transparent 65%),
     linear-gradient(180deg,
-      #4a525c 0%,
-      #c8d0d8 5%,
-      #ffffff 12%,
-      #d8e0e8 22%,
-      #98a0aa 36%,
-      #585e68 44%,
-      #2a2d34 49%,
-      #14161b 50%,
+      #3a424c 0%,
+      #b8c2cc 8%,
+      #f8fcff 16%,
+      #c8d2dc 28%,
+      #6a7280 42%,
+      #1a1e24 50%,
       #4a525c 52%,
-      #8a92a0 58%,
-      #d0d8e0 70%,
-      #f4f8fc 82%,
-      #b8c0ca 92%,
-      #4a525c 100%);
+      #8a92a0 62%,
+      #d8e0e8 76%,
+      #f0f4f8 84%,
+      #98a0aa 96%,
+      #2a323c 100%);
   --chrome-pill:
+    radial-gradient(ellipse 80% 50% at 50% 25%, rgba(255,255,255,.7) 0%, transparent 70%),
     linear-gradient(180deg,
-      #c8d0d8 0%,
-      #ffffff 18%,
-      #a8b0ba 45%,
-      #16181e 50%,
-      #585e68 55%,
-      #d8e0e8 82%,
-      #6a727c 100%);
+      #b0b8c2 0%,
+      #ffffff 22%,
+      #a8b2bc 45%,
+      #0a0c10 50%,
+      #4a525c 55%,
+      #d0d8e0 82%,
+      #5a626a 100%);
   --chrome-shadow:
-    0 1px 0 rgba(255,255,255,.55) inset,
-    0 -2px 4px rgba(0,0,0,.5) inset,
-    0 2px 0 rgba(0,0,0,.5),
-    0 8px 22px rgba(0,0,0,.55);
+    0 1px 0 rgba(255,255,255,.7) inset,
+    0 -3px 6px rgba(0,0,0,.55) inset,
+    0 3px 0 rgba(0,0,0,.6),
+    0 12px 28px rgba(0,0,0,.6);
 
   /* Fonts */
   --font-display: "Archivo Black", "Helvetica Neue", sans-serif;
@@ -87,9 +90,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 ::selection { background: var(--acid); color: var(--bg); }
 
 /* ---------- Chrome 3D text helper ----------
-   Multi-layer stacking gives true depth:
-   1) gradient text via background-clip (the "body" of the letter)
-   2) drop-shadow stack = outline + depth + ambient glow
+   Stacked drop-shadows act as "extrusion faces": each layer is a slightly
+   offset darker copy, creating the illusion that the letter is a thick
+   chrome solid pushed out of the page (like the CHROME TYPE reference).
+   The chained drop-shadows + multi-radial gradient fill = real depth.
 */
 .chrome,
 .section__title em,
@@ -103,16 +107,21 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   -webkit-text-fill-color: transparent;
   color: transparent;
   filter:
-    /* sharp dark contour to read each letter edge */
-    drop-shadow(0 0 0.6px #0a0c10)
-    drop-shadow(0 0 0.6px #0a0c10)
-    /* a touch of bright rim on the top edge */
-    drop-shadow(0 -0.5px 0 rgba(255,255,255,.55))
-    /* depth shadow under the letters (pushes them forward) */
-    drop-shadow(0 2px 0 rgba(0,0,0,.55))
-    drop-shadow(0 4px 1px rgba(0,0,0,.4))
-    /* ambient halo */
-    drop-shadow(0 12px 28px rgba(255,255,255,.07));
+    /* sharp dark contour — double-pass for crisp edge */
+    drop-shadow(0 0 .4px #0a0c10)
+    drop-shadow(0 0 .4px #0a0c10)
+    /* bright rim on the top edge */
+    drop-shadow(0 -1px 0 rgba(255,255,255,.65))
+    /* EXTRUSION: 6 stacked offset copies fading to dark = side walls */
+    drop-shadow(1px 1px 0 #6a727c)
+    drop-shadow(2px 2px 0 #4a525c)
+    drop-shadow(3px 3px 0 #2a323c)
+    drop-shadow(4px 4px 0 #1a222a)
+    drop-shadow(5px 5px 0 #0a1218)
+    drop-shadow(6px 6px 0 #050810)
+    /* projected ground shadow */
+    drop-shadow(8px 14px 16px rgba(0,0,0,.7))
+    drop-shadow(0 20px 40px rgba(0,0,0,.5));
 }
 
 /* ---- Scrollbar ---- */
