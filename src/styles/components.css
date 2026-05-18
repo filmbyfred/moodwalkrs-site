@@ -215,10 +215,11 @@
   line-height: 1; letter-spacing: -.01em;
   max-width: 14ch; text-transform: uppercase;
 }
-.hero__tagline em { font-style: normal; color: var(--acid); position: relative; display: inline-block; }
+.hero__tagline em { font-style: normal; position: relative; display: inline-block; }
 .hero__tagline em::before {
   content: ""; position: absolute; left: -.1em; right: -.1em; bottom: .05em;
-  height: .08em; background: var(--acid);
+  height: .08em; background: var(--chrome-pill);
+  box-shadow: var(--chrome-shadow);
   transform: scaleX(0); transform-origin: left;
   animation: underline 1s var(--ease) 1.8s forwards;
 }
@@ -231,12 +232,13 @@
   margin-top: 24px;
   display: inline-flex; align-items: center; gap: 14px;
   padding: 18px 26px;
-  background: var(--acid); color: var(--bg);
+  background: var(--chrome-pill); color: var(--bg);
   font-family: var(--font-mono); font-size: 13px; letter-spacing: .18em; text-transform: uppercase;
   border-radius: 999px;
-  transition: transform .3s var(--ease), background .3s var(--ease);
+  box-shadow: var(--chrome-shadow);
+  transition: transform .3s var(--ease), filter .3s var(--ease);
 }
-.hero__cta:hover { transform: translateX(6px); background: #fff; }
+.hero__cta:hover { transform: translateX(6px); filter: brightness(1.15); }
 .hero__cta svg { width: 14px; height: 14px; }
 
 @media (max-width: 720px) { .hero__bottom { grid-template-columns: 1fr; } }
@@ -353,7 +355,8 @@
   position: relative;
   margin: 0 0 60px;
   padding: 24px 0 24px 60px;
-  border-left: 2px solid var(--acid);
+  border-left: 2px solid transparent;
+  border-image: var(--chrome-text) 1;
   max-width: 60ch;
 }
 .manifesto__quote p {
@@ -370,7 +373,12 @@
   font-family: var(--font-display);
   font-size: 80px;
   line-height: 1;
-  color: var(--acid);
+  background: var(--chrome-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.4));
 }
 @media (max-width: 600px) {
   .manifesto__quote { padding-left: 40px; }
@@ -440,14 +448,16 @@
 .work-card__tag {
   position: absolute; top: 16px; right: 18px; z-index: 2;
   font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em;
-  color: var(--bg); background: var(--acid);
+  color: var(--bg); background: var(--chrome-pill);
   padding: 4px 8px; border-radius: 999px;
+  box-shadow: var(--chrome-shadow);
   text-transform: uppercase;
 }
 .work-card__arrow {
   position: absolute; bottom: 20px; right: 20px; z-index: 3;
   width: 44px; height: 44px; border-radius: 50%;
-  background: var(--acid); color: var(--bg);
+  background: var(--chrome-pill); color: var(--bg);
+  box-shadow: var(--chrome-shadow);
   display: flex; align-items: center; justify-content: center;
   opacity: 0; transform: translate(-8px, 8px);
   transition: opacity .4s var(--ease), transform .4s var(--ease);
@@ -516,7 +526,7 @@
   display: flex; align-items: center; justify-content: center;
   transition: background .3s, border-color .3s;
 }
-.cap:hover .cap__arrow { background: var(--acid); border-color: var(--acid); color: var(--bg); }
+.cap:hover .cap__arrow { background: var(--chrome-pill); border-color: var(--acid); color: var(--bg); box-shadow: var(--chrome-shadow); }
 
 @media (max-width: 900px) {
   .caps { grid-template-columns: repeat(2, 1fr); }
@@ -680,7 +690,8 @@
 .contact__title .strike { position: relative; color: var(--muted); }
 .contact__title .strike::after {
   content: ""; position: absolute; left: -3%; right: -3%; top: 48%; height: 6px;
-  background: var(--acid);
+  background: var(--chrome-pill);
+  box-shadow: var(--chrome-shadow);
 }
 .contact__email {
   font-family: var(--font-display);
@@ -690,7 +701,7 @@
 }
 .contact__email::after {
   content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
-  background: var(--acid); transform-origin: left; transition: transform .4s var(--ease);
+  background: var(--chrome-pill); transform-origin: left; transition: transform .4s var(--ease);
 }
 .contact__email:hover::after { transform: scaleX(0); transform-origin: right; }
 .contact__sub { margin-top: 26px; color: var(--muted); font-size: 14px; }
@@ -698,12 +709,13 @@
   margin-top: 44px;
   display: inline-flex; align-items: center; gap: 14px;
   padding: 22px 32px;
-  background: var(--acid); color: var(--bg);
+  background: var(--chrome-pill); color: var(--bg);
   font-family: var(--font-mono); font-size: 13px; letter-spacing: .18em; text-transform: uppercase;
   border-radius: 999px;
-  transition: transform .3s var(--ease), background .3s var(--ease);
+  box-shadow: var(--chrome-shadow);
+  transition: transform .3s var(--ease), filter .3s var(--ease);
 }
-.contact__cta:hover { transform: scale(1.04); background: #fff; }
+.contact__cta:hover { transform: scale(1.04); filter: brightness(1.15); }
 .contact__cta svg { width: 14px; height: 14px; }
 
 /* ---------- Footer ---------- */

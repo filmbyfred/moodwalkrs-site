@@ -12,8 +12,29 @@
   --fg: #F3F0E8;
   --muted: #8A8880;
   --line: #1F1F1F;
-  --acid: #D8FF3A;
-  --acid-dim: #A8C528;
+  /* "acid" name kept for compatibility — now a chrome silver */
+  --acid: #DCDCE2;
+  --acid-dim: #8F8F96;
+  /* Chrome 3D gradient (applied to big text accents and pill buttons) */
+  --chrome-text:
+    linear-gradient(180deg,
+      #ffffff 0%,
+      #d6d6dc 18%,
+      #6b6b74 49%,
+      #ffffff 51%,
+      #e2e2e8 78%,
+      #8a8a92 100%);
+  --chrome-pill:
+    linear-gradient(180deg,
+      #f5f5f8 0%,
+      #c8c8cf 48%,
+      #6b6b74 50%,
+      #dcdce0 52%,
+      #ffffff 100%);
+  --chrome-shadow:
+    0 1px 0 rgba(255,255,255,.45) inset,
+    0 -1px 0 rgba(0,0,0,.35) inset,
+    0 6px 22px rgba(255,255,255,.10);
 
   /* Fonts */
   --font-display: "Archivo Black", "Helvetica Neue", sans-serif;
@@ -53,6 +74,21 @@ img, video { display: block; max-width: 100%; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 
 ::selection { background: var(--acid); color: var(--bg); }
+
+/* ---------- Chrome 3D text helper ---------- */
+.chrome,
+.section__title em,
+.hero__tagline em,
+.manifesto__text .acid,
+.stat__num,
+.hero__wordmark .r {
+  background: var(--chrome-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.45)) drop-shadow(0 0 14px rgba(255,255,255,.08));
+}
 
 /* ---- Scrollbar ---- */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
