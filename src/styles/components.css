@@ -213,9 +213,10 @@
 .hero__tagline {
   font-family: var(--font-display);
   font-size: clamp(22px, 3.2vw, 44px);
-  line-height: 1; letter-spacing: -.01em;
-  max-width: 14ch; text-transform: uppercase;
+  line-height: 1.05; letter-spacing: -.01em;
+  max-width: 18ch; text-transform: uppercase;
 }
+.hero__tagline em { display: inline-block; margin-top: .15em; }
 .hero__tagline em { font-style: normal; position: relative; display: inline-block; }
 .hero__tagline em::before {
   content: ""; position: absolute; left: -.1em; right: -.1em; bottom: .05em;

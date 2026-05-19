@@ -3,8 +3,8 @@
     {
       "_template": "hero",
       "wordmark": "MOODWALKRS",
-      "tagline": "Work with us.\nOr <em>walk</em> with us.",
-      "desc": "A collective AI Creative Studio — quality driven. We create, produce and accelerate premium visuals — without sacrificing taste or intention.",
+      "tagline": "AI Creative<br/>Studio.<br/><em>Quality driven.</em>",
+      "desc": "A collective of producers, directors, art directors and AI/VFX experts. We create, produce and accelerate premium visuals — without sacrificing taste or intention.",
       "cta": {
         "label": "See selected work",
         "href": "#work"
