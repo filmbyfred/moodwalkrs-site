@@ -15,29 +15,22 @@
   /* "acid" name kept for compatibility — now a chrome silver */
   --acid: #DCDCE2;
   --acid-dim: #8F8F96;
-  /* Chrome 3D — stacked specular highlights as radial gradients
-     overlay the main metallic linear, mimicking environment reflection. */
+  /* Chrome 3D — single rich gradient, no radial overlays for perf.
+     Sharp horizon line at 50% gives the metallic "mirror" feel. */
   --chrome-text:
-    radial-gradient(ellipse 60% 18% at 50% 12%, rgba(255,255,255,.95) 0%, transparent 70%),
-    radial-gradient(ellipse 35% 12% at 22% 35%, rgba(255,255,255,.5) 0%, transparent 60%),
-    radial-gradient(ellipse 45% 10% at 70% 82%, rgba(255,255,255,.55) 0%, transparent 65%),
     linear-gradient(180deg,
       #3a424c 0%,
-      #b8c2cc 8%,
-      #f8fcff 16%,
-      #c8d2dc 28%,
-      #6a7280 42%,
+      #f0f4f8 14%,
+      #c0c8d2 32%,
+      #6a7280 45%,
       #1a1e24 50%,
-      #4a525c 52%,
-      #8a92a0 62%,
-      #d8e0e8 76%,
-      #f0f4f8 84%,
-      #98a0aa 96%,
-      #2a323c 100%);
+      #4a525c 53%,
+      #b0b8c4 70%,
+      #f0f4f8 86%,
+      #5a626c 100%);
   --chrome-pill:
-    radial-gradient(ellipse 80% 50% at 50% 25%, rgba(255,255,255,.7) 0%, transparent 70%),
     linear-gradient(180deg,
-      #b0b8c2 0%,
+      #c8d0d8 0%,
       #ffffff 22%,
       #a8b2bc 45%,
       #0a0c10 50%,
@@ -45,10 +38,9 @@
       #d0d8e0 82%,
       #5a626a 100%);
   --chrome-shadow:
-    0 1px 0 rgba(255,255,255,.7) inset,
-    0 -3px 6px rgba(0,0,0,.55) inset,
-    0 3px 0 rgba(0,0,0,.6),
-    0 12px 28px rgba(0,0,0,.6);
+    0 1px 0 rgba(255,255,255,.55) inset,
+    0 -2px 4px rgba(0,0,0,.5) inset,
+    0 4px 14px rgba(0,0,0,.5);
 
   /* Fonts */
   --font-display: "Archivo Black", "Helvetica Neue", sans-serif;
@@ -89,11 +81,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 ::selection { background: var(--acid); color: var(--bg); }
 
-/* ---------- Chrome 3D text helper ----------
-   Stacked drop-shadows act as "extrusion faces": each layer is a slightly
-   offset darker copy, creating the illusion that the letter is a thick
-   chrome solid pushed out of the page (like the CHROME TYPE reference).
-   The chained drop-shadows + multi-radial gradient fill = real depth.
+/* ---------- Chrome 3D text helper (perf-tuned) ----------
+   3 drop-shadows instead of 11 — readable contour, a single extrusion offset,
+   and a projected shadow. Keeps the "polished metal coming off the page" feel
+   without forcing the browser to re-render 11 filter passes per letter.
 */
 .chrome,
 .section__title em,
@@ -107,21 +98,20 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   -webkit-text-fill-color: transparent;
   color: transparent;
   filter:
-    /* sharp dark contour — double-pass for crisp edge */
-    drop-shadow(0 0 .4px #0a0c10)
-    drop-shadow(0 0 .4px #0a0c10)
-    /* bright rim on the top edge */
-    drop-shadow(0 -1px 0 rgba(255,255,255,.65))
-    /* EXTRUSION: 6 stacked offset copies fading to dark = side walls */
-    drop-shadow(1px 1px 0 #6a727c)
-    drop-shadow(2px 2px 0 #4a525c)
-    drop-shadow(3px 3px 0 #2a323c)
-    drop-shadow(4px 4px 0 #1a222a)
-    drop-shadow(5px 5px 0 #0a1218)
-    drop-shadow(6px 6px 0 #050810)
-    /* projected ground shadow */
-    drop-shadow(8px 14px 16px rgba(0,0,0,.7))
-    drop-shadow(0 20px 40px rgba(0,0,0,.5));
+    drop-shadow(0 0 .5px #0a0c10)
+    drop-shadow(2px 2px 0 #2a323c)
+    drop-shadow(0 6px 12px rgba(0,0,0,.5));
+}
+/* Disable the filter on mobile (paints are expensive on phones) */
+@media (max-width: 600px) {
+  .chrome,
+  .section__title em,
+  .hero__tagline em,
+  .manifesto__text .acid,
+  .stat__num,
+  .hero__wordmark .r {
+    filter: none;
+  }
 }
 
 /* ---- Scrollbar ---- */
