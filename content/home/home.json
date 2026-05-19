@@ -20,17 +20,8 @@
       "words": ["Create", "Produce", "Direct", "Accelerate", "Create", "Produce", "Direct", "Accelerate"]
     },
     {
-      "_template": "manifesto",
-      "kicker": "[ 01 · VISION ]",
-      "kickerRight": "Our Corpus",
-      "text": "Tools are built to {remove friction}. Processes are shaped to protect intention. Precision becomes a habit. Creativity and quality are the {outcome}.",
-      "quote": "We need to move fast through AI timespace. Bending production time is the key to give creativity space.",
-      "metaLeft": "— Moodwalkrs, 2026",
-      "metaRight": "We bend time. We keep the soul."
-    },
-    {
       "_template": "work_grid",
-      "label": "02 · Selected Work",
+      "label": "01 · Selected Work",
       "title": "Recent <em>plays.</em>",
       "rightMeta": "2025 — 2026",
       "slugs": [
@@ -60,6 +51,15 @@
       "_template": "marquee",
       "reverse": true,
       "words": ["Pro-grade AI", "Pro-grade craft", "Pro-grade soul", "Pro-grade speed", "Pro-grade AI", "Pro-grade craft"]
+    },
+    {
+      "_template": "manifesto",
+      "kicker": "[ 02 · VISION ]",
+      "kickerRight": "Our Corpus",
+      "text": "Tools are built to {remove friction}. Processes are shaped to protect intention. Precision becomes a habit. Creativity and quality are the {outcome}.",
+      "quote": "We need to move fast through AI timespace. Bending production time is the key to give creativity space.",
+      "metaLeft": "— Moodwalkrs, 2026",
+      "metaRight": "We bend time. We keep the soul."
     },
     {
       "_template": "capabilities",

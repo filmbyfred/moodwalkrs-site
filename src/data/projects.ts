@@ -22,6 +22,7 @@ export interface Project {
   credits?: Record<string, string>;
   span?: Span;             // bento layout hint
   ratio?: Ratio;
+  private?: boolean;       // true = only shown on password-protected /clients page
 }
 
 export const allProjects: Project[] = [
@@ -283,4 +284,14 @@ export function getProjectsInOrder(slugs: string[]): Project[] {
   return slugs
     .map(s => allProjects.find(p => p.slug === s))
     .filter((p): p is Project => !!p);
+}
+
+/** Films flagged `private: true` are only listed on /clients (password-gated). */
+export function getPrivateProjects(): Project[] {
+  return allProjects.filter(p => p.private === true);
+}
+
+/** Public projects only (excluding private). */
+export function getPublicProjects(): Project[] {
+  return allProjects.filter(p => p.private !== true);
 }

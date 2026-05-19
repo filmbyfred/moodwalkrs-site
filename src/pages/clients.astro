@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPrivateProjects, type Project } from '../data/projects';
+
+const films: Project[] = getPrivateProjects();
+
+// === PASSWORD ===
+// Change the password by editing this constant. It is plain text (not hashed) —
+// soft protection only. The film files themselves are still publicly addressable
+// on the Netlify CDN if someone guesses /films/{slug}.mp4. For real
+// confidentiality, host private films on Vimeo (private) or Frame.io.
+const CLIENT_PASSWORD = "moodwalkrs-2026";
+---
+
+<BaseLayout
+  title="Clients — Moodwalkrs"
+  description="Confidential film selection for Moodwalkrs clients."
+>
+  <section class="clients-page">
+    <!-- Password gate -->
+    <div class="gate" id="gate" data-pwd={CLIENT_PASSWORD}>
+      <div class="gate__inner">
+        <div class="gate__label">[ Private · Clients only ]</div>
+        <h1 class="gate__title">Locked.</h1>
+        <p class="gate__sub">Type your access key to view the confidential selection.</p>
+        <form class="gate__form" id="gate-form" autocomplete="off">
+          <input
+            class="gate__input"
+            id="gate-input"
+            type="password"
+            name="key"
+            placeholder="Access key"
+            aria-label="Access key"
+            spellcheck="false"
+            autocapitalize="off"
+            autofocus
+          />
+          <button class="gate__btn" type="submit">Unlock →</button>
+        </form>
+        <div class="gate__error" id="gate-error" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <!-- Private gallery (hidden until unlocked) -->
+    <div class="vault" id="vault" hidden>
+      <div class="vault__head">
+        <div class="vault__meta">
+          <div class="section__label">Confidential · Clients</div>
+          <h1 class="section__title">Selected for <em>your eyes.</em></h1>
+        </div>
+        <button class="vault__signout" id="vault-signout" type="button">Sign out</button>
+      </div>
+
+      {films.length === 0 ? (
+        <p class="vault__empty">
+          The vault is empty for now. Once private films are added to <code>src/data/projects.ts</code> with <code>private: true</code>, they'll show up here.
+        </p>
+      ) : (
+        <div class="work-grid">
+          {films.map((p, i) => {
+            const span = p.span ? `span-${p.span}` : 'span-md';
+            const hasPreview = !!p.preview;
+            return (
+              <a class={`work-card ${span} ${hasPreview ? 'has-video' : ''}`} href={`/project/${p.slug}`}>
+                {hasPreview ? (
+                  <>
+                    <div class="work-card__media" style={`background-image:url('${p.cover}')`}></div>
+                    <video class="work-card__video" src={p.preview} poster={p.cover} muted loop playsinline preload="metadata"></video>
+                  </>
+                ) : (
+                  <div class="work-card__media" style={`background-image:url('${p.cover}')`}></div>
+                )}
+                <div class="work-card__index">{String(i + 1).padStart(2, '0')}</div>
+                {p.tag && <div class="work-card__tag">{p.tag}</div>}
+                <div class="work-card__body">
+                  <div class="work-card__title">{p.title}</div>
+                  <div class="work-card__meta">{p.category}<br/>{p.year}</div>
+                </div>
+                <div class="work-card__arrow">→</div>
+              </a>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <script>
+    const gate = document.getElementById('gate') as HTMLElement | null;
+    const vault = document.getElementById('vault') as HTMLElement | null;
+    const form = document.getElementById('gate-form') as HTMLFormElement | null;
+    const input = document.getElementById('gate-input') as HTMLInputElement | null;
+    const errorEl = document.getElementById('gate-error') as HTMLElement | null;
+    const signoutBtn = document.getElementById('vault-signout') as HTMLButtonElement | null;
+    const PWD = gate?.dataset.pwd || '';
+    const LS_KEY = 'mw_clients_unlocked';
+
+    function unlock() {
+      if (!gate || !vault) return;
+      gate.hidden = true;
+      vault.hidden = false;
+      // autoplay any preview videos that were paused
+      document.querySelectorAll<HTMLVideoElement>('.work-card.has-video video.work-card__video').forEach((video) => {
+        const card = video.closest('.work-card') as HTMLAnchorElement | null;
+        card?.addEventListener('mouseenter', () => { video.currentTime = 0; video.play().catch(() => {}); });
+        card?.addEventListener('mouseleave', () => { video.pause(); });
+      });
+    }
+
+    // Already unlocked this session ?
+    if (localStorage.getItem(LS_KEY) === '1') {
+      unlock();
+    }
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const value = (input?.value || '').trim();
+      if (value === PWD) {
+        localStorage.setItem(LS_KEY, '1');
+        if (errorEl) errorEl.textContent = '';
+        unlock();
+      } else {
+        if (errorEl) errorEl.textContent = 'Wrong key.';
+        input?.classList.add('gate__input--shake');
+        setTimeout(() => input?.classList.remove('gate__input--shake'), 500);
+      }
+    });
+
+    signoutBtn?.addEventListener('click', () => {
+      localStorage.removeItem(LS_KEY);
+      location.reload();
+    });
+  </script>
+</BaseLayout>
