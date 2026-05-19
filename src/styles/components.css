@@ -201,7 +201,7 @@
    wordmark which dims the letters to 22% opacity. On hover, each letter
    reignites with a staggered wave (L→R), with a subtle lift.  */
 .hero__wordmark.is-faded span {
-  opacity: .22;
+  opacity: 0;
   transform: translateY(0);
 }
 .hero__wordmark.is-faded:hover span {
