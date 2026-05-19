@@ -183,6 +183,7 @@
   display: inline-block;
   transform: translateY(110%);
   animation: walkIn .9s var(--ease-walk) forwards;
+  transition: opacity .7s var(--ease), transform .55s var(--ease);
 }
 .hero__wordmark span:nth-child(1)  { animation-delay: .60s; }
 .hero__wordmark span:nth-child(2)  { animation-delay: .66s; }
@@ -194,6 +195,30 @@
 .hero__wordmark span:nth-child(8)  { animation-delay: 1.02s; }
 .hero__wordmark span:nth-child(9)  { animation-delay: 1.08s; }
 .hero__wordmark span:nth-child(10) { animation-delay: 1.14s; }
+
+/* === Ghost / hover-reveal ===
+   After the entry animation finishes (~2.2s), JS adds .is-faded to the
+   wordmark which dims the letters to 22% opacity. On hover, each letter
+   reignites with a staggered wave (L→R), with a subtle lift.  */
+.hero__wordmark.is-faded span {
+  opacity: .22;
+  transform: translateY(0);
+}
+.hero__wordmark.is-faded:hover span {
+  opacity: 1;
+  transform: translateY(-4px);
+}
+.hero__wordmark.is-faded span:nth-child(1)  { transition-delay: .00s; }
+.hero__wordmark.is-faded span:nth-child(2)  { transition-delay: .04s; }
+.hero__wordmark.is-faded span:nth-child(3)  { transition-delay: .08s; }
+.hero__wordmark.is-faded span:nth-child(4)  { transition-delay: .12s; }
+.hero__wordmark.is-faded span:nth-child(5)  { transition-delay: .16s; }
+.hero__wordmark.is-faded span:nth-child(6)  { transition-delay: .20s; }
+.hero__wordmark.is-faded span:nth-child(7)  { transition-delay: .24s; }
+.hero__wordmark.is-faded span:nth-child(8)  { transition-delay: .28s; }
+.hero__wordmark.is-faded span:nth-child(9)  { transition-delay: .32s; }
+.hero__wordmark.is-faded span:nth-child(10) { transition-delay: .36s; }
+.hero__wordmark.is-faded { cursor: pointer; }
 .hero__wordmark .r { color: var(--acid); position: relative; }
 .hero__wordmark .r::after {
   content: ""; position: absolute; right: -.35em; top: .15em;

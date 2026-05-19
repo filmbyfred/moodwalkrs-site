@@ -75,6 +75,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
       setTimeout(() => {
         document.getElementById('preloader')?.classList.add('done');
       }, 600);
+
+      // After the entry walk-in animation finishes (~2.1s), put the wordmark
+      // into "ghost" state so hover reignites the letters one by one.
+      setTimeout(() => {
+        document.querySelector('.hero__wordmark')?.classList.add('is-faded');
+      }, 2300);
     });
 
     initLenis();
