@@ -207,8 +207,8 @@
 }
 
 .hero__bottom {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 40px; align-items: end;
+  display: flex; flex-wrap: wrap;
+  gap: 40px; align-items: flex-end;
 }
 .hero__tagline {
   font-family: var(--font-display);
@@ -754,6 +754,33 @@
 /* ---------- Reveal (GSAP will set final state) ---------- */
 .reveal { opacity: 0; transform: translateY(40px); }
 .reveal-stagger > * { opacity: 0; transform: translateY(30px); }
+
+/* ---------- Statement (cinematic intermission text) ---------- */
+.statement {
+  padding: 100px var(--pad-x);
+}
+.statement--left { text-align: left; }
+.statement--center { text-align: center; }
+.statement__text {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: -.015em;
+  color: var(--fg);
+  margin: 0 auto;
+}
+.statement--md .statement__text {
+  font-size: clamp(20px, 2.4vw, 32px);
+  line-height: 1.2;
+  max-width: 38ch;
+}
+.statement--lg .statement__text {
+  font-size: clamp(28px, 4.5vw, 60px);
+  line-height: 1.05;
+  max-width: 26ch;
+}
+@media (max-width: 600px) {
+  .statement { padding: 60px var(--pad-x); }
+}
 
 /* ---------- Clients (password-gated) page ---------- */
 .clients-page {

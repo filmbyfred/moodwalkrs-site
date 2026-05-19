@@ -56,12 +56,5 @@ const letters = wordmark.split('').map((ch) => ({
 
   <div class="hero__bottom">
     <div class="hero__tagline" set:html={tagline}></div>
-    <div>
-      <p class="hero__desc">{desc}</p>
-      <a class="hero__cta" href={cta.href}>
-        {cta.label}
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
-    </div>
   </div>
 </section>

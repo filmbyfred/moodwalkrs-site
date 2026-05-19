@@ -1,0 +1,16 @@
+---
+/**
+ * Cinematic intermission text — sits between sections as an editorial breath.
+ * Use it as a "title-card" before a major sequence (work grid, vision…).
+ */
+interface Props {
+  text: string;        // HTML allowed (em is chrome-styled)
+  align?: "center" | "left";
+  size?: "md" | "lg";  // md ≈ paragraph, lg ≈ title-card
+}
+const { text, align = "center", size = "md" } = Astro.props;
+---
+
+<section class={`statement statement--${align} statement--${size} reveal`}>
+  <p class="statement__text" set:html={text}></p>
+</section>

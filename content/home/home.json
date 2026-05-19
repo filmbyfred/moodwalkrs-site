@@ -20,6 +20,12 @@
       "words": ["Create", "Produce", "Direct", "Accelerate", "Create", "Produce", "Direct", "Accelerate"]
     },
     {
+      "_template": "statement",
+      "size": "lg",
+      "align": "center",
+      "text": "A collective of producers, directors, art directors and <em>AI / VFX experts</em>. We create, produce and accelerate premium visuals — without sacrificing taste or intention."
+    },
+    {
       "_template": "work_grid",
       "label": "01 · Selected Work",
       "title": "Recent <em>plays.</em>",

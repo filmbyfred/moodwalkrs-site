@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
+import Statement from '../components/Statement.astro';
 import Manifesto from '../components/Manifesto.astro';
 import WorkGrid from '../components/WorkGrid.astro';
 import Capabilities from '../components/Capabilities.astro';
@@ -35,6 +36,9 @@ const blocks = homeData.blocks as any[];
 
       case 'marquee':
         return <Marquee words={block.words} reverse={block.reverse} />;
+
+      case 'statement':
+        return <Statement text={block.text} align={block.align} size={block.size} />;
 
       case 'manifesto':
         return (
