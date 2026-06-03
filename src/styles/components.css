@@ -136,10 +136,11 @@
     linear-gradient(180deg, rgba(10, 10, 10, 0.28) 0%, rgba(10, 10, 10, 0.22) 50%, rgba(10, 10, 10, 0.55) 100%);
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero__bg { display: none; }
+  /* Don't hide the bg — just let it show the poster frame without looping
+     (modern browsers auto-pause autoplay videos in this mode). */
+  .hero__bg { animation: none; }
 }
 @media (max-width: 600px) {
-  /* On phones keep the video slightly dimmed for text legibility */
   .hero__bg { opacity: 0.85; }
 }
 .hero__meta {
