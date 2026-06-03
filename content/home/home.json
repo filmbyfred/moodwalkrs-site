@@ -69,40 +69,74 @@
     },
     {
       "_template": "capabilities",
-      "label": "03 · Capabilities",
-      "title": "What we <em>make.</em>",
-      "rightMeta": "Five tools. One studio. End-to-end, from brief to broadcast.",
+      "label": "03 · What we do",
+      "title": "Services <em>you can buy.</em>",
+      "rightMeta": "Five offers. End-to-end, from brief to broadcast.",
       "items": [
         {
-          "num": "01 / Create",
-          "title": "Hyper-\nreal AI",
-          "desc": "Photography, film and editorial work indistinguishable from the real — only faster, bolder, and on-brief."
+          "num": "01",
+          "title": "AI Film\nProduction",
+          "desc": "Commercials, music videos, brand films, social assets. Directed end-to-end, finished cinema-grade."
         },
         {
-          "num": "02 / Produce",
-          "title": "AI CGI\n& VFX",
-          "desc": "End-to-end production blending in-camera, CG and generative layers into one seamless pipeline."
+          "num": "02",
+          "title": "AI Image\nCampaigns",
+          "desc": "Key visuals, editorial series, product worlds, fashion imagery. Hero shots ready for print, OOH and digital."
         },
         {
-          "num": "03 / Direct",
-          "title": "Creative\ndirection",
-          "desc": "From positioning to storyboard — we protect intention at every frame, every cut, every pixel."
+          "num": "03",
+          "title": "Look Dev &\nPitch Films",
+          "desc": "Mood films, animatics, AI storyboards, treatment visuals. Sell the idea before you sell the production."
         },
         {
-          "num": "04 / Accelerate",
-          "title": "Custom\ntooling",
-          "desc": "We build in-house pipelines, LoRAs and agent workflows that make your team run at a different clock."
+          "num": "04",
+          "title": "Hybrid\nProduction / VFX",
+          "desc": "Live action, CGI, AI layers, compositing, finishing. Real shoots augmented with generative pipelines."
         },
         {
-          "num": "05 / Mood Tape",
-          "title": "Mood\nTape",
-          "desc": "Pitch-ready mood films and look-dev reels — for briefs that need to be felt, not just read. Tone, pace and intention in one viewing."
+          "num": "05",
+          "title": "Custom AI\nPipelines",
+          "desc": "LoRAs, workflows, internal creative tools, brand-specific systems. Your team runs at a different clock."
         }
       ]
     },
     {
+      "_template": "statement",
+      "size": "lg",
+      "align": "center",
+      "text": "AI is <em>not</em> the aesthetic. It is the production engine. Taste, direction and craft remain <em>human-led</em>."
+    },
+    {
+      "_template": "use_cases",
+      "label": "04 · Use cases",
+      "title": "Built for <em>who</em> sells stories.",
+      "items": [
+        {
+          "audience": "For agencies",
+          "value": "Pitch visuals, animatics, treatment films, rapid concept testing."
+        },
+        {
+          "audience": "For brands",
+          "value": "Image campaigns, launch films, product worlds, social content."
+        },
+        {
+          "audience": "For artists",
+          "value": "Music videos, cover art, visualizers, tour visuals."
+        },
+        {
+          "audience": "For production companies",
+          "value": "AI previsualization, VFX support, hybrid live + generative workflows."
+        },
+        {
+          "audience": "For luxury & fashion",
+          "value": "Editorial films, campaign imagery, surreal product narratives."
+        }
+      ],
+      "reassurance": "Our work is built with a production mindset: clear rights, controlled workflows, human direction, cinematic finishing and client-safe delivery."
+    },
+    {
       "_template": "crew",
-      "label": "04 · The Collective",
+      "label": "05 · The Collective",
       "title": "The <em>Moodwalkrs.</em>",
       "intro": [
         "MOODWALKRS is a collective AI Creative Studio — quality driven.",
@@ -118,22 +152,22 @@
         {
           "name": "Stéphane “Corpus” Juffé",
           "role": "Director · Producer · Creative Director",
-          "bio": "Paris-based, award-winning Director / Producer / Creative Director. 20+ years across CGI, video and interactive content. Creative technologist and digital entrepreneur."
+          "bio": "Award-winning Director / Producer / Creative Director with 20+ years across CGI, video and interactive content. Bridges agency-grade strategy with hands-on creative tech and digital entrepreneurship — the operating system of the studio."
         },
         {
           "name": "Thibaut Mitre",
           "role": "Director · Producer",
-          "bio": "Director and producer working across brand content, music videos and fashion."
+          "bio": "Director and producer working across brand content, music videos and fashion. Builds visual systems that travel from social to broadcast without losing density — equally at home with talent, brand teams and AI tooling."
         },
         {
           "name": "Aurélien Winterman",
           "role": "Producer · Executive Production",
-          "bio": "Producer with an executive-production profile — cinema-focused credits across official film directories."
+          "bio": "Producer with cinema-grade executive-production credits. Brings feature-film rigour to commercial and editorial work — schedules, crews, deliverables, finishing — so AI never compromises the production line."
         },
         {
           "name": "Fred de Pontcharra",
           "role": "Director · Photographer",
-          "bio": "Paris-based film director and photographer — music videos, commercials and artistic content, focused on bold cinematic storytelling."
+          "bio": "Film director and photographer working across commercials, music videos and cinematic visual systems. His approach brings narrative rhythm, live-action grammar and premium image culture into AI-driven production."
         }
       ],
       "rolesLabel": "Disciplines",
@@ -159,13 +193,20 @@
     },
     {
       "_template": "contact",
-      "kicker": "[ 05 · Let's play ]",
+      "kicker": "[ 06 · Let's play ]",
       "title": "Work with us.\n<span class=\"strike\">Or</span> walk with us.",
       "email": "hello@moodwalkrs.com",
       "sub": "Paris — worldwide · Open to briefs, crews & noise-makers.",
-      "cta": {
-        "label": "Start a project",
-        "href": "mailto:hello@moodwalkrs.com"
+      "ctas": [
+        { "label": "Start a project", "href": "#brief", "primary": true },
+        { "label": "Send a brief",     "href": "#brief" },
+        { "label": "Book a call",      "href": "mailto:hello@moodwalkrs.com?subject=Booking%20a%20call" },
+        { "label": "Watch the reel",   "href": "/#work" }
+      ],
+      "form": {
+        "enabled": true,
+        "title": "Send a brief.",
+        "subtitle": "We reply within 24 hours."
       }
     }
   ]

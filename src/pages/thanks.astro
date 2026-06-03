@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Brief received — Moodwalkrs"
+  description="Your brief was received. We'll reply within 24 hours."
+  noOrgSchema={true}
+>
+  <section class="thanks">
+    <div class="thanks__inner">
+      <div class="section__label">[ Brief received ]</div>
+      <h1 class="thanks__title">We got it.</h1>
+      <p class="thanks__sub">A human (with chrome on their hands) reads every brief. Expect a reply within <strong>24 hours</strong>, often faster.</p>
+      <div class="thanks__ctas">
+        <a class="contact__cta contact__cta--primary" href="/">
+          Back home
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a class="contact__cta contact__cta--ghost" href="/#work">See selected work</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .thanks {
+    min-height: 80vh;
+    padding: 160px var(--pad-x) 80px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thanks__inner { max-width: 640px; text-align: center; }
+  .thanks__title {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 11vw, 160px);
+    line-height: .9; letter-spacing: -.03em;
+    text-transform: uppercase;
+    margin: 16px 0 24px;
+  }
+  .thanks__sub {
+    color: var(--muted); font-size: 16px; line-height: 1.55;
+    max-width: 44ch; margin: 0 auto 40px;
+  }
+  .thanks__sub strong { color: var(--fg); }
+  .thanks__ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+</style>

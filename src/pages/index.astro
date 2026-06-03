@@ -7,6 +7,7 @@ import Statement from '../components/Statement.astro';
 import Manifesto from '../components/Manifesto.astro';
 import WorkGrid from '../components/WorkGrid.astro';
 import Capabilities from '../components/Capabilities.astro';
+import UseCases from '../components/UseCases.astro';
 import Crew from '../components/Crew.astro';
 import Clients from '../components/Clients.astro';
 import Awards from '../components/Awards.astro';
@@ -74,6 +75,16 @@ const blocks = homeData.blocks as any[];
           />
         );
 
+      case 'use_cases':
+        return (
+          <UseCases
+            label={block.label}
+            title={block.title}
+            items={block.items}
+            reassurance={block.reassurance}
+          />
+        );
+
       case 'crew':
         return (
           <Crew
@@ -103,6 +114,8 @@ const blocks = homeData.blocks as any[];
             email={block.email}
             sub={block.sub}
             cta={block.cta}
+            ctas={block.ctas}
+            form={block.form}
           />
         );
 

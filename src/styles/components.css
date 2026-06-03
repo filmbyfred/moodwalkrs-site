@@ -471,11 +471,7 @@
   color: var(--muted); text-transform: uppercase;
   text-align: right;
 }
-.work-card__index {
-  position: absolute; top: 16px; left: 18px; z-index: 2;
-  font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em;
-  color: var(--fg); opacity: .85;
-}
+.work-card__index { display: none; }
 .work-card__tag {
   position: absolute; top: 16px; right: 18px; z-index: 2;
   font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em;
@@ -743,18 +739,114 @@
 }
 .contact__email:hover::after { transform: scaleX(0); transform-origin: right; }
 .contact__sub { margin-top: 26px; color: var(--muted); font-size: 14px; }
+/* CTA group + variants */
+.contact__ctas {
+  margin: 44px auto 0;
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 12px;
+  max-width: 760px;
+}
 .contact__cta {
-  margin-top: 44px;
-  display: inline-flex; align-items: center; gap: 14px;
-  padding: 22px 32px;
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 16px 24px;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+  border-radius: 999px;
+  transition: transform .3s var(--ease), filter .3s var(--ease), background .3s var(--ease), color .3s var(--ease);
+}
+.contact__cta svg { width: 14px; height: 14px; }
+.contact__cta--primary {
+  background: var(--chrome-pill); color: var(--bg);
+  box-shadow: var(--chrome-shadow);
+}
+.contact__cta--primary:hover { transform: scale(1.04); filter: brightness(1.15); }
+.contact__cta--ghost {
+  background: transparent; color: var(--fg);
+  border: 1px solid var(--line);
+}
+.contact__cta--ghost:hover { background: var(--bg-2); border-color: var(--fg); }
+
+/* ---------- Brief form ---------- */
+.brief {
+  margin: 100px auto 0;
+  max-width: 720px;
+  text-align: left;
+  padding-top: 60px;
+  border-top: 1px solid var(--line);
+}
+.brief__head {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.brief__title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.5vw, 60px);
+  line-height: .95;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+  margin: 10px 0 8px;
+}
+.brief__sub {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .25em;
+  color: var(--muted); text-transform: uppercase;
+}
+.brief__form { display: flex; flex-direction: column; gap: 20px; }
+.brief__honey { display: none; }
+.brief__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.brief__field { display: flex; flex-direction: column; gap: 6px; }
+.brief__field--full { grid-column: 1 / -1; }
+.brief__field > span {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .25em;
+  color: var(--muted); text-transform: uppercase;
+}
+.brief__field input,
+.brief__field select,
+.brief__field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 15px;
+  outline: none;
+  transition: border-color .3s var(--ease), background .3s var(--ease);
+}
+.brief__field input:focus,
+.brief__field select:focus,
+.brief__field textarea:focus {
+  border-color: var(--acid);
+  background: #1a1a1c;
+}
+.brief__field textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
+.brief__field select { appearance: none; cursor: pointer; }
+.brief__submit {
+  align-self: center;
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-top: 8px;
+  padding: 18px 32px;
   background: var(--chrome-pill); color: var(--bg);
   font-family: var(--font-mono); font-size: 13px; letter-spacing: .18em; text-transform: uppercase;
-  border-radius: 999px;
+  border: 0; border-radius: 999px;
   box-shadow: var(--chrome-shadow);
+  cursor: pointer;
   transition: transform .3s var(--ease), filter .3s var(--ease);
 }
-.contact__cta:hover { transform: scale(1.04); filter: brightness(1.15); }
-.contact__cta svg { width: 14px; height: 14px; }
+.brief__submit:hover { transform: scale(1.04); filter: brightness(1.15); }
+.brief__submit svg { width: 14px; height: 14px; }
+.brief__legal {
+  text-align: center;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .18em;
+  color: var(--muted); text-transform: uppercase;
+  max-width: 56ch; margin: 0 auto;
+}
+@media (max-width: 600px) {
+  .brief__grid { grid-template-columns: 1fr; }
+}
 
 /* ---------- Footer ---------- */
 .footer {
@@ -790,6 +882,51 @@
 /* ---------- Reveal (GSAP will set final state) ---------- */
 .reveal { opacity: 0; transform: translateY(40px); }
 .reveal-stagger > * { opacity: 0; transform: translateY(30px); }
+
+/* ---------- Use Cases ---------- */
+.use-cases__reassurance {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .18em;
+  color: var(--muted);
+  text-transform: uppercase;
+  max-width: 36ch;
+  text-align: right;
+  line-height: 1.55;
+}
+.use-cases__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+.use-case {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.use-case__audience {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .25em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.use-case__value {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2vw, 28px);
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+.use-case:hover .use-case__audience { color: var(--fg); transition: color .3s; }
+@media (max-width: 720px) {
+  .use-case { grid-template-columns: 1fr; gap: 8px; }
+}
 
 /* ---------- Statement (cinematic intermission text) ---------- */
 .statement {

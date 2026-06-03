@@ -1,0 +1,35 @@
+---
+/**
+ * "Use cases" block — translates capabilities into audience-specific value props.
+ * For agencies / brands / artists / production / fashion.
+ */
+interface Item { audience: string; value: string; }
+interface Props {
+  label: string;
+  title: string;
+  items: Item[];
+  reassurance?: string;
+}
+const { label, title, items, reassurance } = Astro.props;
+---
+
+<section class="section use-cases" id="use-cases">
+  <div class="section__head reveal">
+    <div>
+      <div class="section__label">{label}</div>
+      <h2 class="section__title" set:html={title}></h2>
+    </div>
+    {reassurance && (
+      <p class="use-cases__reassurance section__right">{reassurance}</p>
+    )}
+  </div>
+
+  <div class="use-cases__list reveal-stagger">
+    {items.map((it) => (
+      <article class="use-case">
+        <h3 class="use-case__audience">{it.audience}</h3>
+        <p class="use-case__value">{it.value}</p>
+      </article>
+    ))}
+  </div>
+</section>
