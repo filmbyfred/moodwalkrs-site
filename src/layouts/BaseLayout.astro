@@ -12,15 +12,78 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  keywords?: string;
+  /** When true, no JSON-LD Organization is injected (only project pages might want CreativeWork instead). */
+  noOrgSchema?: boolean;
 }
 
 const {
-  title = "Moodwalkrs — AI Creative Studio · Quality Driven",
-  description = "Moodwalkrs is an AI creative studio. We create, produce and accelerate pro-grade content for brands, agencies and productions. Work with us, or walk with us.",
-  ogImage = "/images/og.jpg"
+  title = "Moodwalkrs — AI Creative Studio · Paris · Quality Driven",
+  description = "Moodwalkrs is an AI creative studio based in Paris. A collective of producers, directors, art directors and AI / VFX experts who create, produce and accelerate premium visuals — without sacrificing taste or intention.",
+  ogImage = "/films/processing-art-gallery-poster.jpg",
+  keywords = "AI creative studio, studio IA, AI VFX studio, AI film production, AI commercials, generative video, creative direction, Paris, Moodwalkrs, premium AI content",
+  noOrgSchema = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImageAbs = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro.site).toString();
+
+// === JSON-LD Organization (Google Knowledge Graph) ===
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Moodwalkrs",
+  "alternateName": ["MOODWALKRS", "Moodwalkrs Studio", "Moodwalkrs AI Creative Studio"],
+  "url": "https://www.moodwalkrs.com",
+  "logo": new URL("/og-logo.png", Astro.site).toString(),
+  "image": ogImageAbs,
+  "description": "Moodwalkrs is a collective AI creative studio — quality driven. We create, produce and accelerate premium visuals for brands, agencies and productions.",
+  "slogan": "AI Creative Studio. Quality driven.",
+  "foundingDate": "2024",
+  "founder": [
+    { "@type": "Person", "name": "Stéphane Juffé", "jobTitle": "Director · Producer · Creative Director" },
+    { "@type": "Person", "name": "Thibaut Mitre", "jobTitle": "Director · Producer" },
+    { "@type": "Person", "name": "Aurélien Winterman", "jobTitle": "Producer · Executive Production" },
+    { "@type": "Person", "name": "Fred de Pontcharra", "jobTitle": "Director · Photographer" }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Paris",
+    "addressCountry": "FR"
+  },
+  "areaServed": "Worldwide",
+  "knowsAbout": [
+    "AI Creative Direction",
+    "AI VFX",
+    "AI Film Production",
+    "Generative Content",
+    "Hyper-real AI imagery",
+    "Creative Direction",
+    "Commercial production",
+    "Fashion films",
+    "Music videos"
+  ],
+  "sameAs": [
+    "https://www.instagram.com/moodwalkrs"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "hello@moodwalkrs.com",
+    "contactType": "Business inquiries",
+    "areaServed": "Worldwide",
+    "availableLanguage": ["en", "fr"]
+  }
+};
+
+// === JSON-LD WebSite (helps Google understand sitelinks search box) ===
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Moodwalkrs",
+  "url": "https://www.moodwalkrs.com",
+  "publisher": { "@type": "Organization", "name": "Moodwalkrs" },
+  "inLanguage": "en"
+};
 ---
 
 <!DOCTYPE html>
@@ -28,26 +91,59 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="color-scheme" content="dark" />
 
   <title>{title}</title>
   <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
+  <meta name="author" content="Moodwalkrs" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="googlebot" content="index, follow" />
   <link rel="canonical" href={canonical} />
 
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='68' font-family='Arial Black' font-size='60' text-anchor='middle' fill='%23D8FF3A'%3EM%3C/text%3E%3C/svg%3E" />
+  <!-- Alternate language hints (site is en, but signals to FR audience) -->
+  <link rel="alternate" hreflang="en" href={canonical} />
+  <link rel="alternate" hreflang="x-default" href={canonical} />
 
-  <!-- OG -->
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='68' font-family='Arial Black' font-size='60' text-anchor='middle' fill='%23DCDCE2'%3EM%3C/text%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="/og-logo.png" />
+
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Moodwalkrs" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="fr_FR" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonical} />
-  <meta property="og:image" content={ogImage} />
+  <meta property="og:image" content={ogImageAbs} />
+  <meta property="og:image:width" content="1600" />
+  <meta property="og:image:height" content="900" />
+  <meta property="og:image:alt" content="Moodwalkrs — AI Creative Studio" />
+
+  <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageAbs} />
+  <meta name="twitter:image:alt" content="Moodwalkrs — AI Creative Studio" />
+
+  <!-- JSON-LD structured data -->
+  {!noOrgSchema && (
+    <>
+      <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+      <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    </>
+  )}
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <slot name="head" />
 </head>
 <body>
   <!-- Preloader -->
@@ -76,8 +172,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
         document.getElementById('preloader')?.classList.add('done');
       }, 600);
 
-      // After the entry walk-in animation finishes (~2.1s), put the wordmark
-      // into "ghost" state so hover reignites the letters one by one.
       setTimeout(() => {
         document.querySelector('.hero__wordmark')?.classList.add('is-faded');
       }, 2300);
@@ -85,7 +179,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 
     initLenis();
     initCursor();
-    // wait one frame so reveal elements exist before GSAP binds
     requestAnimationFrame(() => initGSAP());
   </script>
 </body>

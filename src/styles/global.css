@@ -81,6 +81,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 ::selection { background: var(--acid); color: var(--bg); }
 
+/* Visually hidden but exposed to assistive tech & search engines.
+   Used for SEO text and accessibility labels. */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ---------- Chrome 3D text helper (perf-tuned) ----------
    3 drop-shadows instead of 11 — readable contour, a single extrusion offset,
    and a projected shadow. Keeps the "polished metal coming off the page" feel

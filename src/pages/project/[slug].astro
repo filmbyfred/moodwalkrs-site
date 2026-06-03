@@ -10,9 +10,39 @@ export function getStaticPaths() {
 }
 
 const { project } = Astro.props;
+
+const siteUrl = "https://www.moodwalkrs.com";
+const absCover = project.cover.startsWith('http') ? project.cover : siteUrl + project.cover;
+const absVideo = project.video && project.video.startsWith('/') ? siteUrl + project.video : project.video;
+
+const creativeWorkSchema = {
+  "@context": "https://schema.org",
+  "@type": project.category?.toLowerCase().includes('music') ? "MusicVideoObject" : "VideoObject",
+  "name": project.title,
+  "description": project.description,
+  "thumbnailUrl": absCover,
+  "uploadDate": `${project.year}-01-01`,
+  ...(absVideo ? { "contentUrl": absVideo } : {}),
+  "creator": {
+    "@type": "Organization",
+    "name": "Moodwalkrs",
+    "url": siteUrl
+  },
+  ...(project.client ? {
+    "publisher": { "@type": "Organization", "name": project.client }
+  } : {}),
+  "genre": project.category,
+  "inLanguage": "en"
+};
 ---
 
-<BaseLayout title={`${project.title} — Moodwalkrs`} description={project.description}>
+<BaseLayout
+  title={`${project.title} — Moodwalkrs · AI Creative Studio`}
+  description={`${project.description} Directed and produced by Moodwalkrs, an AI creative studio based in Paris.`}
+  ogImage={project.cover}
+  keywords={`${project.title}, ${project.category}, ${project.client ?? ''}, Moodwalkrs, AI creative studio, AI video production`}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(creativeWorkSchema)} />
   <section class="project">
     <a class="project__back" href="/#work">← Back to work</a>
 

@@ -11,6 +11,8 @@ export default defineConfig({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
+      // Exclude the password-protected clients vault from the public sitemap.
+      filter: (page) => !/\/clients\/?$/.test(page),
     }),
   ],
   build: {

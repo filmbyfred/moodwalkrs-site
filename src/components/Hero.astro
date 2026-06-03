@@ -48,13 +48,22 @@ const letters = wordmark.split('').map((ch) => ({
     <div class="play"></div>
   </div>
 
-  <h1 class="hero__wordmark" aria-label={wordmark}>
+  <h1 class="hero__wordmark" aria-label={`${wordmark} — AI Creative Studio in Paris`}>
     {letters.map((l) => (
       <span class={l.acid ? 'r' : ''}>{l.ch}</span>
     ))}
   </h1>
 
+  <!-- SR-only SEO line: visible to search engines and screen readers,
+       invisible to sighted users (the wordmark and tagline carry it visually). -->
+  <p class="sr-only">
+    Moodwalkrs is a collective AI creative studio based in Paris, France.
+    Producers, directors, art directors, creative tech, AI &amp; VFX experts and DOPs work as one team
+    to create, produce and accelerate premium AI-driven visuals — commercials, music videos,
+    fashion films, documentaries — for brands, agencies and productions worldwide.
+  </p>
+
   <div class="hero__bottom">
-    <div class="hero__tagline" set:html={tagline}></div>
+    <h2 class="hero__tagline" set:html={tagline}></h2>
   </div>
 </section>
