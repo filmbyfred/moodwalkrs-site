@@ -71,7 +71,7 @@
       "_template": "capabilities",
       "label": "03 · Capabilities",
       "title": "What we <em>make.</em>",
-      "rightMeta": "Four verbs. One studio. End-to-end, from brief to broadcast.",
+      "rightMeta": "Five tools. One studio. End-to-end, from brief to broadcast.",
       "items": [
         {
           "num": "01 / Create",
@@ -92,6 +92,11 @@
           "num": "04 / Accelerate",
           "title": "Custom\ntooling",
           "desc": "We build in-house pipelines, LoRAs and agent workflows that make your team run at a different clock."
+        },
+        {
+          "num": "05 / Mood Tape",
+          "title": "Mood\nTape",
+          "desc": "Pitch-ready mood films and look-dev reels — for briefs that need to be felt, not just read. Tone, pace and intention in one viewing."
         }
       ]
     },

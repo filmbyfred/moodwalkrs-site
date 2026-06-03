@@ -525,11 +525,11 @@
 
 /* ---------- Capabilities ---------- */
 .caps {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
   border-top: 1px solid var(--line);
 }
 .cap {
-  padding: 44px 30px 60px;
+  padding: 44px 24px 60px;
   border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
   min-height: 360px;
   display: flex; flex-direction: column; justify-content: space-between;
@@ -539,27 +539,34 @@
 .cap:last-child { border-right: none; }
 .cap:hover { background: var(--bg-2); }
 .cap__num {
-  font-family: var(--font-mono); font-size: 11px; letter-spacing: .3em; color: var(--muted);
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .25em; color: var(--muted);
 }
 .cap__title {
   font-family: var(--font-display);
-  font-size: clamp(28px, 3vw, 44px);
+  font-size: clamp(24px, 2.4vw, 38px);
   line-height: .9; text-transform: uppercase; letter-spacing: -.02em;
-  margin: 100px 0 20px;
+  margin: 80px 0 20px;
   white-space: pre-line;
 }
 .cap:hover .cap__title { color: var(--acid); transition: color .4s var(--ease); }
 .cap__desc { color: var(--muted); font-size: 14px; line-height: 1.55; max-width: 30ch; }
 .cap__arrow {
-  position: absolute; bottom: 30px; right: 30px;
+  position: absolute; bottom: 30px; right: 24px;
   width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   transition: background .3s, border-color .3s;
 }
 .cap:hover .cap__arrow { background: var(--chrome-pill); border-color: var(--acid); color: var(--bg); box-shadow: var(--chrome-shadow); }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
+  .caps { grid-template-columns: repeat(3, 1fr); }
+  .cap:nth-child(3n) { border-right: none; }
+  .cap:nth-child(3n + 1):nth-last-child(-n + 2),
+  .cap:nth-child(3n + 1):nth-last-child(-n + 2) ~ .cap { border-right: 1px solid var(--line); }
+}
+@media (max-width: 760px) {
   .caps { grid-template-columns: repeat(2, 1fr); }
+  .cap { border-right: 1px solid var(--line); }
   .cap:nth-child(2n) { border-right: none; }
 }
 @media (max-width: 520px) {
