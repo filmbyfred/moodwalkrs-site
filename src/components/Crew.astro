@@ -34,14 +34,16 @@ const {
       {intro.map((p, i) => (
         <p class={i === intro.length - 1 ? 'muted' : ''}>{p}</p>
       ))}
-      <div class="crew__stats">
-        {stats.map((s) => (
-          <div class="stat">
-            <div class="stat__num">{s.num}</div>
-            <div class="stat__label">{s.label}</div>
-          </div>
-        ))}
-      </div>
+      {stats.length > 0 && (
+        <div class="crew__stats">
+          {stats.map((s) => (
+            <div class="stat">
+              <div class="stat__num">{s.num}</div>
+              <div class="stat__label">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
 
     <div class="roles-wrap">

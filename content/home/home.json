@@ -70,7 +70,7 @@
     {
       "_template": "capabilities",
       "label": "03 · What we do",
-      "title": "Services <em>you can buy.</em>",
+      "title": "What we <em>ship.</em>",
       "rightMeta": "Five offers. End-to-end, from brief to broadcast.",
       "items": [
         {
@@ -85,8 +85,8 @@
         },
         {
           "num": "03",
-          "title": "Look Dev &\nPitch Films",
-          "desc": "Mood films, animatics, AI storyboards, treatment visuals. Sell the idea before you sell the production."
+          "title": "MOODFILM",
+          "desc": "Mood films, animatics, AI storyboards, treatment visuals. Look dev & pitch films — sell the idea before you sell the production."
         },
         {
           "num": "04",
@@ -142,11 +142,7 @@
         "MOODWALKRS is a collective AI Creative Studio — quality driven.",
         "We bring together producers, creative directors, directors, art directors, creative tech, AI & VFX experts, DOPs and editors to create, produce, and accelerate premium visuals — without sacrificing taste or intention."
       ],
-      "stats": [
-        { "num": "04", "label": "Founders" },
-        { "num": "11", "label": "Films shipped" },
-        { "num": "1×", "label": "Collective" }
-      ],
+      "stats": [],
       "foundersLabel": "Founders",
       "founders": [
         {
