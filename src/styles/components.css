@@ -472,24 +472,8 @@
   text-align: right;
 }
 .work-card__index { display: none; }
-.work-card__tag {
-  position: absolute; top: 16px; right: 18px; z-index: 2;
-  font-family: var(--font-mono); font-size: 10px; letter-spacing: .2em;
-  color: var(--bg); background: var(--chrome-pill);
-  padding: 4px 8px; border-radius: 999px;
-  box-shadow: var(--chrome-shadow);
-  text-transform: uppercase;
-}
-.work-card__arrow {
-  position: absolute; bottom: 20px; right: 20px; z-index: 3;
-  width: 44px; height: 44px; border-radius: 50%;
-  background: var(--chrome-pill); color: var(--bg);
-  box-shadow: var(--chrome-shadow);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; transform: translate(-8px, 8px);
-  transition: opacity .4s var(--ease), transform .4s var(--ease);
-}
-.work-card:hover .work-card__arrow { opacity: 1; transform: translate(0,0); }
+.work-card__tag { display: none; }
+.work-card__arrow { display: none; }
 
 /* span variants */
 .work-card.span-xl { grid-column: span 12; aspect-ratio: 16/9; }

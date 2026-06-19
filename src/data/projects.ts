@@ -27,6 +27,54 @@ export interface Project {
 
 export const allProjects: Project[] = [
   {
+    title: "Cartier — Spec Ad",
+    slug: "cartier-spec-ad",
+    category: "Luxury Spec",
+    tag: "Luxury",
+    client: "Cartier",
+    role: "Direction · Production",
+    year: 2026,
+    cover: "/films/cartier-spec-ad-poster.jpg",
+    preview: "/films/cartier-spec-ad-preview.mp4",
+    video: "/films/cartier-spec-ad.mp4",
+    description: "Spec luxury commercial directed for Cartier.",
+    gallery: [],
+    span: "xl",
+    ratio: "16:9"
+  },
+  {
+    title: "Reveal Phantom — 2026 / Part 1",
+    slug: "reveal-phantom-2026",
+    category: "Automotive Reveal",
+    tag: "Reveal",
+    client: "Phantom",
+    role: "Direction · Color · Post",
+    year: 2026,
+    cover: "/films/reveal-phantom-2026-poster.jpg",
+    preview: "/films/reveal-phantom-2026-preview.mp4",
+    video: "/films/reveal-phantom-2026.mp4",
+    description: "Reveal film for Phantom 2026 — part one of the launch sequence.",
+    gallery: [],
+    span: "xl",
+    ratio: "16:9"
+  },
+  {
+    title: "Showreel — Moodwalkrs",
+    slug: "showreel-moodwalkrs",
+    category: "Studio Reel",
+    tag: "Reel",
+    client: "Moodwalkrs",
+    role: "Direction · Edit",
+    year: 2026,
+    cover: "/films/showreel-moodwalkrs-poster.jpg",
+    preview: "/films/showreel-moodwalkrs-preview.mp4",
+    video: "/films/showreel-moodwalkrs.mp4",
+    description: "Moodwalkrs studio showreel — selected work across commercials, music videos, fashion and editorial AI pieces.",
+    gallery: [],
+    span: "lg",
+    ratio: "16:9"
+  },
+  {
     title: "Larack — Passion",
     slug: "larack-passion",
     category: "Music Video",
@@ -164,8 +212,8 @@ export const allProjects: Project[] = [
     video: "/films/c3-citroen.mp4",
     description: "Spec film for the Citroën C3.",
     gallery: [],
-    span: "sm",
-    ratio: "1:1"
+    span: "lg",
+    ratio: "16:9"
   },
   {
     title: "INDEX — Lightswitch",
@@ -195,8 +243,8 @@ export const allProjects: Project[] = [
     video: "/films/nxt-lvl-manifesto.mp4",
     description: "NXT LVL club manifesto — multi-panel commercial.",
     gallery: [],
-    span: "sm",
-    ratio: "1:1"
+    span: "md",
+    ratio: "16:9"
   },
   {
     title: "Processing — Art Gallery",
@@ -226,8 +274,8 @@ export const allProjects: Project[] = [
     video: "/films/shein.mp4",
     description: "Fashion film directed for Shein.",
     gallery: [],
-    span: "sm",
-    ratio: "1:1"
+    span: "md",
+    ratio: "16:9"
   },
   {
     title: "3D Process — Control Car",
