@@ -1,21 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { allProjects, type Project } from '../data/projects';
-
-// Films flagged as "moodfilm" — same private pattern as /clients.
-// To add: in src/data/projects.ts, set `private: true` AND tag the project
-// with the slug pattern `moodfilm-*` OR explicitly set a `serviceCategory: "moodfilm"` field.
-// For now, we collect both: private projects + anything that explicitly contains "mood".
-const films: Project[] = allProjects.filter(p =>
-  p.private === true ||
-  /mood/i.test(p.slug) ||
-  /mood/i.test(p.category) ||
-  /mood/i.test(p.tag ?? "")
-);
-
-// === PASSWORD ===
-// Same password as /clients for simplicity. Edit here to differentiate later.
-const MOODFILM_PASSWORD = "moodwalkrs-2026";
 
 // === JSON-LD Service schema — helps Google rank "moodfilm IA" / "AI moodfilm" ===
 const serviceSchema = {
@@ -51,8 +35,10 @@ const serviceSchema = {
   keywords="moodfilm, moodfilm IA, moodfilm AI, AI moodfilm, mood film IA, mood film AI, pitch film AI, AI pitch film, AI animatic, AI storyboard, look dev IA, treatment film, AI creative studio, Moodwalkrs, studio IA Paris"
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-  <section class="clients-page moodfilm-page">
-    <!-- SEO-friendly intro (always visible to crawlers, even before unlock) -->
+
+  <article class="moodfilm-page">
+
+    <!-- ===================== INTRO ===================== -->
     <header class="moodfilm-intro">
       <div class="section__label">[ MOODFILM · Look dev &amp; pitch films ]</div>
       <h1 class="moodfilm-intro__title">MOODFILM<span class="punct">.</span></h1>
@@ -68,119 +54,127 @@ const serviceSchema = {
       </p>
     </header>
 
-    <!-- Password gate (Mood vault behind the intro) -->
-    <div class="gate" id="gate" data-pwd={MOODFILM_PASSWORD}>
-      <div class="gate__inner">
-        <div class="gate__label">[ Private — Moodfilm vault ]</div>
-        <h2 class="gate__title">Locked.</h2>
-        <p class="gate__sub">Type your access key to view the confidential moodfilm selection.</p>
-        <form class="gate__form" id="gate-form" autocomplete="off">
-          <input
-            class="gate__input"
-            id="gate-input"
-            type="password"
-            name="key"
-            placeholder="Access key"
-            aria-label="Access key"
-            spellcheck="false"
-            autocapitalize="off"
-            autofocus
-          />
-          <button class="gate__btn" type="submit">Unlock →</button>
-        </form>
-        <div class="gate__error" id="gate-error" aria-live="polite"></div>
-      </div>
-    </div>
+    <!-- ===================== HOW IT FLOWS ===================== -->
+    <section class="mf-flow">
+      <div class="section__label">[ The journey ]</div>
+      <h2 class="mf-flow__title">From <em>brief</em> to <em>mood</em> to <em>film</em>.</h2>
+      <p class="mf-flow__sub">Three short signals. One continuous creative territory.</p>
 
-    <!-- Vault (revealed on unlock) -->
-    <div class="vault" id="vault" hidden>
-      <div class="vault__head">
-        <div class="vault__meta">
-          <div class="section__label">Moodfilm · Private selection</div>
-          <h2 class="section__title">Selected <em>moodfilms.</em></h2>
-        </div>
-        <button class="vault__signout" id="vault-signout" type="button">Sign out</button>
-      </div>
+      <div class="mf-flow__steps">
+        <figure class="mf-step">
+          <div class="mf-step__num">01</div>
+          <video class="mf-step__media" src="/case-study/saudi-betc/clip-brief.mp4" muted loop playsinline autoplay preload="metadata"></video>
+          <figcaption>
+            <h3>Brief.</h3>
+            <p>We read the strategy, the audience and the constraints. We build a creative territory before we touch a prompt.</p>
+          </figcaption>
+        </figure>
 
-      {films.length === 0 ? (
-        <p class="vault__empty">
-          The vault is empty for now. Mark a project with <code>private: true</code> (or add a category containing "mood") in <code>src/data/projects.ts</code> and it'll appear here.
+        <figure class="mf-step">
+          <div class="mf-step__num">02</div>
+          <video class="mf-step__media" src="/case-study/saudi-betc/clip-mood.mp4" muted loop playsinline autoplay preload="metadata"></video>
+          <figcaption>
+            <h3>Mood.</h3>
+            <p>AI moodfilm — tone, pace, color and intention shaped into a one-minute viewing. Decisions become visible before money is spent.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="mf-step">
+          <div class="mf-step__num">03</div>
+          <video class="mf-step__media" src="/case-study/saudi-betc/clip-film.mp4" muted loop playsinline autoplay preload="metadata"></video>
+          <figcaption>
+            <h3>Film.</h3>
+            <p>The same team carries the project through to a broadcast-ready film — combining AI, live action, craft and post when needed.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== CASE STUDY 01 ===================== -->
+    <section class="mf-case">
+      <div class="mf-case__head">
+        <div class="section__label">[ Case study 01 · BETC ]</div>
+        <h2 class="mf-case__title">Saudi — <em>Not Madness.</em></h2>
+        <p class="mf-case__lead">
+          Director's cut commissioned by BETC. A moodfilm-first project that travelled from look-dev
+          to a polished hybrid piece — AI imagery, live-action grammar, full post-production —
+          without changing partner along the way.
         </p>
-      ) : (
-        <div class="work-grid">
-          {films.map((p, i) => {
-            const span = p.span ? `span-${p.span}` : 'span-md';
-            const hasPreview = !!p.preview;
-            return (
-              <a class={`work-card ${span} ${hasPreview ? 'has-video' : ''}`} href={`/project/${p.slug}`}>
-                {hasPreview ? (
-                  <>
-                    <div class="work-card__media" style={`background-image:url('${p.cover}')`}></div>
-                    <video class="work-card__video" src={p.preview} poster={p.cover} muted loop playsinline preload="metadata"></video>
-                  </>
-                ) : (
-                  <div class="work-card__media" style={`background-image:url('${p.cover}')`}></div>
-                )}
-                <div class="work-card__body">
-                  <div class="work-card__title">{p.title}</div>
-                  <div class="work-card__meta">{p.category}<br/>{p.year}</div>
-                </div>
-              </a>
-            );
-          })}
-        </div>
-      )}
-    </div>
-  </section>
+      </div>
 
-  <script>
-    const gate = document.getElementById('gate') as HTMLElement | null;
-    const vault = document.getElementById('vault') as HTMLElement | null;
-    const form = document.getElementById('gate-form') as HTMLFormElement | null;
-    const input = document.getElementById('gate-input') as HTMLInputElement | null;
-    const errorEl = document.getElementById('gate-error') as HTMLElement | null;
-    const signoutBtn = document.getElementById('vault-signout') as HTMLButtonElement | null;
-    const PWD = gate?.dataset.pwd || '';
-    const LS_KEY = 'mw_moodfilm_unlocked';
+      <div class="mf-case__media">
+        <img src="/case-study/saudi-betc/treatment.jpg" alt="Saudi — Not Madness — treatment visuals by Moodwalkrs" loading="lazy" />
+      </div>
 
-    function unlock() {
-      if (!gate || !vault) return;
-      gate.hidden = true;
-      vault.hidden = false;
-      document.querySelectorAll<HTMLVideoElement>('.work-card.has-video video.work-card__video').forEach((video) => {
-        const card = video.closest('.work-card') as HTMLAnchorElement | null;
-        card?.addEventListener('mouseenter', () => { video.currentTime = 0; video.play().catch(() => {}); });
-        card?.addEventListener('mouseleave', () => { video.pause(); });
-      });
-    }
+      <div class="mf-case__details">
+        <dl class="mf-case__credits">
+          <div><dt>Client</dt><dd>BETC · Saudi</dd></div>
+          <div><dt>Format</dt><dd>Director's cut · Hybrid</dd></div>
+          <div><dt>Workflow</dt><dd>Moodfilm → Shoot → AI/VFX → Finishing</dd></div>
+          <div><dt>Year</dt><dd>2026</dd></div>
+        </dl>
+        <p class="mf-case__body">
+          The brief asked for emotional density without madness. The moodfilm fixed tone and pace
+          early, so the live-action shoot could chase intention rather than discover it on set.
+          Post combined AI layers, VFX and grading in a single conversation —
+          rights cleared from day one.
+        </p>
+      </div>
+    </section>
 
-    if (localStorage.getItem(LS_KEY) === '1') unlock();
+    <!-- ===================== CASE STUDY 02 ===================== -->
+    <section class="mf-case mf-case--alt">
+      <div class="mf-case__head">
+        <div class="section__label">[ Case study 02 · Treatment ]</div>
+        <h2 class="mf-case__title">From boards to <em>moving image.</em></h2>
+        <p class="mf-case__lead">
+          Treatment boards developed inside the moodfilm process. Static frames become live
+          references — color charts, lensing notes, lighting maps — so the production team
+          can read the film before it's shot.
+        </p>
+      </div>
 
-    form?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const value = (input?.value || '').trim();
-      if (value === PWD) {
-        localStorage.setItem(LS_KEY, '1');
-        if (errorEl) errorEl.textContent = '';
-        unlock();
-      } else {
-        if (errorEl) errorEl.textContent = 'Wrong key.';
-        input?.classList.add('gate__input--shake');
-        setTimeout(() => input?.classList.remove('gate__input--shake'), 500);
-      }
-    });
+      <div class="mf-case__boards">
+        <img src="/case-study/case-02/board-1.jpg" alt="Moodwalkrs moodfilm treatment board — composition and lensing notes" loading="lazy" />
+        <img src="/case-study/case-02/board-2.jpg" alt="Moodwalkrs moodfilm treatment board — color and lighting reference" loading="lazy" />
+      </div>
 
-    signoutBtn?.addEventListener('click', () => {
-      localStorage.removeItem(LS_KEY);
-      location.reload();
-    });
-  </script>
+      <div class="mf-case__details">
+        <p class="mf-case__body">
+          Each moodfilm ships with a treatment book — references, shot sketches, lensing,
+          and a finishing brief. The film is the headline; the boards are the operating manual.
+          Production teams know what they're delivering before the first call sheet.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="mf-cta">
+      <h2 class="mf-cta__title">Have a brief? <em>Start a moodfilm.</em></h2>
+      <p class="mf-cta__sub">We turn a brief into a moodfilm in 7–14 days. Right after, you decide whether to ship it as a pitch piece or keep going to a broadcast-ready film — same partner, same creative territory.</p>
+      <div class="mf-cta__actions">
+        <a class="contact__cta contact__cta--primary" href="/#brief">
+          Start a moodfilm
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a class="contact__cta contact__cta--ghost" href="mailto:hello@moodwalkrs.com?subject=Moodfilm%20inquiry">
+          Email us
+        </a>
+      </div>
+    </section>
+  </article>
 </BaseLayout>
 
 <style>
+  /* ============ INTRO ============ */
+  .moodfilm-page {
+    padding: 160px var(--pad-x) 100px;
+    max-width: var(--container-max);
+    margin: 0 auto;
+  }
   .moodfilm-intro {
     max-width: 760px;
-    margin: 0 auto 80px;
+    margin: 0 auto 120px;
     text-align: center;
   }
   .moodfilm-intro__title {
@@ -198,10 +192,7 @@ const serviceSchema = {
     max-width: 36ch;
     margin: 0 auto 20px;
   }
-  .moodfilm-intro__lead em {
-    font-style: normal;
-    color: var(--acid);
-  }
+  .moodfilm-intro__lead em { font-style: normal; color: var(--acid); }
   .moodfilm-intro__sub {
     color: var(--muted);
     font-size: 15px;
@@ -209,4 +200,129 @@ const serviceSchema = {
     max-width: 56ch;
     margin: 0 auto;
   }
+
+  /* ============ FLOW (3 clips) ============ */
+  .mf-flow { margin: 0 auto 140px; text-align: center; }
+  .mf-flow__title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 84px);
+    line-height: .95;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+    margin: 12px 0 14px;
+  }
+  .mf-flow__title em { font-style: normal; color: var(--fg); position: relative; }
+  .mf-flow__sub {
+    color: var(--muted); font-size: 14px; letter-spacing: .12em;
+    text-transform: uppercase; margin-bottom: 60px;
+  }
+  .mf-flow__steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    text-align: left;
+  }
+  .mf-step {
+    margin: 0;
+    position: relative;
+    background: var(--bg-2);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .mf-step__num {
+    position: absolute; top: 16px; left: 18px; z-index: 2;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .25em;
+    color: var(--acid); text-transform: uppercase;
+  }
+  .mf-step__media {
+    display: block; width: 100%; aspect-ratio: 16/9;
+    object-fit: cover; background: var(--bg);
+  }
+  .mf-step figcaption { padding: 20px 22px 24px; }
+  .mf-step figcaption h3 {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2vw, 30px);
+    text-transform: uppercase; letter-spacing: -.01em;
+    margin: 0 0 8px;
+  }
+  .mf-step figcaption p { color: var(--muted); font-size: 14px; line-height: 1.55; margin: 0; }
+
+  @media (max-width: 900px) {
+    .mf-flow__steps { grid-template-columns: 1fr; }
+  }
+
+  /* ============ CASE STUDY ============ */
+  .mf-case {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 80px 0;
+    border-top: 1px solid var(--line);
+  }
+  .mf-case__head { max-width: 60ch; }
+  .mf-case__title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 84px);
+    line-height: .95;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+    margin: 12px 0 20px;
+  }
+  .mf-case__title em { font-style: normal; color: var(--acid); }
+  .mf-case__lead {
+    color: var(--fg); font-size: 17px; line-height: 1.55; max-width: 54ch;
+  }
+  .mf-case__media img {
+    display: block; width: 100%; height: auto; border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  }
+  .mf-case__boards {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .mf-case__boards img { width: 100%; height: auto; border-radius: 4px; box-shadow: 0 16px 40px rgba(0,0,0,.45); }
+  .mf-case__details {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .mf-case__credits {
+    margin: 0;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .mf-case__credits div {
+    display: grid; grid-template-columns: 100px 1fr; gap: 14px;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+  .mf-case__credits dt { color: var(--muted); margin: 0; }
+  .mf-case__credits dd { color: var(--fg); margin: 0; }
+  .mf-case__body { color: var(--muted); font-size: 15px; line-height: 1.65; margin: 0; max-width: 56ch; }
+
+  @media (max-width: 760px) {
+    .mf-case__boards { grid-template-columns: 1fr; }
+    .mf-case__details { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  /* ============ CTA ============ */
+  .mf-cta {
+    margin-top: 80px;
+    padding: 100px var(--pad-x);
+    margin-left: calc(var(--pad-x) * -1);
+    margin-right: calc(var(--pad-x) * -1);
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+  .mf-cta__title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 7vw, 92px);
+    line-height: .95;
+    letter-spacing: -.02em;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+  }
+  .mf-cta__title em { font-style: normal; color: var(--acid); }
+  .mf-cta__sub { color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 56ch; margin: 0 auto 40px; }
+  .mf-cta__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 </style>
