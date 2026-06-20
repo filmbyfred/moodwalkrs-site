@@ -68,45 +68,8 @@
       "text": "From <em>moodfilm</em> to <em>broadcast-ready film</em>. One creative territory, one production partner."
     },
     {
-      "_template": "capabilities",
-      "label": "02 · What we ship",
-      "title": "What we <em>ship.</em>",
-      "rightMeta": "Five offers. End-to-end, from brief to broadcast.",
-      "items": [
-        {
-          "num": "01",
-          "title": "AI Film\nProduction",
-          "desc": "Commercials, music videos, brand films, social assets. Directed end-to-end, finished cinema-grade.",
-          "href": "/#work"
-        },
-        {
-          "num": "02",
-          "title": "AI Image\nCampaigns",
-          "desc": "Key visuals, editorial series, product worlds, fashion imagery. Hero shots ready for print, OOH and digital.",
-          "href": "/#work"
-        },
-        {
-          "num": "03",
-          "title": "MOODFILM",
-          "desc": "Mood films, animatics, AI storyboards, treatment visuals. Look dev & pitch films — sell the idea before you sell the production.",
-          "href": "/moodfilm"
-        },
-        {
-          "num": "04",
-          "title": "Hybrid\nProduction / VFX",
-          "desc": "Live action, CGI, AI layers, compositing, finishing. Real shoots augmented with generative pipelines.",
-          "href": "/#work"
-        },
-        {
-          "num": "05",
-          "title": "Rights\nMatter",
-          "desc": "We build projects that can evolve into usable assets — music, talent, imagery and distribution rights considered from the start."
-        }
-      ]
-    },
-    {
       "_template": "manifesto",
-      "kicker": "[ 03 · VISION ]",
+      "kicker": "[ 02 · VISION ]",
       "kickerRight": "Filmmakers first",
       "text": [
         "We don't see AI and production as separate worlds.",
@@ -115,6 +78,49 @@
       ],
       "metaLeft": "— Moodwalkrs, 2026",
       "metaRight": "We bend time. We keep the soul."
+    },
+    {
+      "_template": "capabilities",
+      "label": "03 · What we ship",
+      "title": "What we <em>ship.</em>",
+      "rightMeta": "Five offers. End-to-end, from brief to broadcast.",
+      "items": [
+        {
+          "num": "01",
+          "title": "AI Film\nProduction",
+          "desc": "Commercials, music videos, brand films, social assets. Directed end-to-end, finished cinema-grade.",
+          "video": "/films/jeep-wrangler-preview.mp4",
+          "poster": "/films/jeep-wrangler-poster.jpg"
+        },
+        {
+          "num": "02",
+          "title": "AI Image\nCampaigns",
+          "desc": "Key visuals, editorial series, product worlds, fashion imagery. Hero shots ready for print, OOH and digital.",
+          "video": "/films/avatar-edito-preview.mp4",
+          "poster": "/films/avatar-edito-poster.jpg"
+        },
+        {
+          "num": "03",
+          "title": "MOODFILM",
+          "desc": "Mood films, animatics, AI storyboards, treatment visuals. Look dev & pitch films — sell the idea before you sell the production.",
+          "video": "/films/processing-art-gallery-preview.mp4",
+          "poster": "/films/processing-art-gallery-poster.jpg"
+        },
+        {
+          "num": "04",
+          "title": "Hybrid\nProduction / VFX",
+          "desc": "Live action, CGI, AI layers, compositing, finishing. Real shoots augmented with generative pipelines.",
+          "video": "/films/3d-process-control-preview.mp4",
+          "poster": "/films/3d-process-control-poster.jpg"
+        },
+        {
+          "num": "05",
+          "title": "Rights\nMatter",
+          "desc": "We build projects that can evolve into usable assets — music, talent, imagery and distribution rights considered from the start.",
+          "video": "/films/notre-agent-preview.mp4",
+          "poster": "/films/notre-agent-poster.jpg"
+        }
+      ]
     },
     {
       "_template": "use_cases",

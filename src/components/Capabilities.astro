@@ -5,6 +5,10 @@ interface Item {
   desc: string;
   /** Optional link — when set, the card becomes clickable. */
   href?: string;
+  /** Optional ambient looping video that plays muted behind the card. */
+  video?: string;
+  /** Optional poster (used as the still fallback for the video). */
+  poster?: string;
 }
 interface Props {
   label: string;
@@ -26,10 +30,26 @@ const { label, title, rightMeta, items } = Astro.props;
 
   <div class="caps reveal-stagger">
     {items.map((it) => {
+      const cardClass = `cap${it.video ? ' cap--has-video' : ''}${it.href ? ' cap--link' : ''}`;
       const inner = (
         <>
+          {it.video && (
+            <video
+              class="cap__bg"
+              src={it.video}
+              poster={it.poster}
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-hidden="true"
+            ></video>
+          )}
+          {it.video && <div class="cap__bg-overlay" aria-hidden="true"></div>}
+
           <div class="cap__num">{it.num}</div>
-          <div>
+          <div class="cap__content">
             <h3 class="cap__title">{it.title}</h3>
             <p class="cap__desc">{it.desc}</p>
           </div>
@@ -37,9 +57,9 @@ const { label, title, rightMeta, items } = Astro.props;
         </>
       );
       return it.href ? (
-        <a class="cap cap--link" href={it.href}>{inner}</a>
+        <a class={cardClass} href={it.href}>{inner}</a>
       ) : (
-        <div class="cap">{inner}</div>
+        <div class={cardClass}>{inner}</div>
       );
     })}
   </div>
