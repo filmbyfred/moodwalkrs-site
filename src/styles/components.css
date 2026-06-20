@@ -368,13 +368,18 @@
   font-family: var(--font-mono); font-size: 11px; letter-spacing: .25em;
   color: var(--muted); text-transform: uppercase;
 }
+.manifesto__body { margin: 40px 0 60px; }
 .manifesto__text {
   font-family: var(--font-display);
   font-size: clamp(30px, 5.5vw, 86px);
   line-height: 1; letter-spacing: -.02em;
-  text-transform: uppercase; max-width: 18ch;
-  margin: 40px 0 60px;
+  text-transform: uppercase; max-width: 20ch;
+  margin: 0 0 28px;
 }
+.manifesto__text:last-child { margin-bottom: 0; }
+/* Each additional paragraph slightly smaller so the first one leads visually */
+.manifesto__text--p2 { font-size: clamp(22px, 3.6vw, 56px); max-width: 28ch; }
+.manifesto__text--p3 { font-size: clamp(20px, 3vw, 44px); max-width: 32ch; line-height: 1.1; }
 .manifesto__text .word { display: inline-block; opacity: .18; transition: opacity .4s var(--ease); }
 .manifesto__text .word.in { opacity: 1; }
 .manifesto__text .acid { color: var(--acid); }
@@ -519,6 +524,8 @@
 }
 .cap:last-child { border-right: none; }
 .cap:hover { background: var(--bg-2); }
+.cap--link { color: inherit; text-decoration: none; cursor: pointer; }
+.cap--link:hover .cap__arrow { background: var(--chrome-pill); border-color: var(--acid); color: var(--bg); box-shadow: var(--chrome-shadow); }
 .cap__num {
   font-family: var(--font-mono); font-size: 11px; letter-spacing: .25em; color: var(--muted);
 }

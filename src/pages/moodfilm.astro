@@ -1,0 +1,212 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { allProjects, type Project } from '../data/projects';
+
+// Films flagged as "moodfilm" — same private pattern as /clients.
+// To add: in src/data/projects.ts, set `private: true` AND tag the project
+// with the slug pattern `moodfilm-*` OR explicitly set a `serviceCategory: "moodfilm"` field.
+// For now, we collect both: private projects + anything that explicitly contains "mood".
+const films: Project[] = allProjects.filter(p =>
+  p.private === true ||
+  /mood/i.test(p.slug) ||
+  /mood/i.test(p.category) ||
+  /mood/i.test(p.tag ?? "")
+);
+
+// === PASSWORD ===
+// Same password as /clients for simplicity. Edit here to differentiate later.
+const MOODFILM_PASSWORD = "moodwalkrs-2026";
+
+// === JSON-LD Service schema — helps Google rank "moodfilm IA" / "AI moodfilm" ===
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "MOODFILM",
+  "alternateName": ["AI moodfilm", "moodfilm IA", "AI pitch film", "AI look development"],
+  "serviceType": "AI-driven look development & pitch films",
+  "description": "MOODFILM is the Moodwalkrs format for AI-driven look development and pitch films — moodfilms, animatics, AI storyboards and treatment visuals. Built to convince before you produce.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Moodwalkrs",
+    "url": "https://www.moodwalkrs.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR" }
+  },
+  "areaServed": "Worldwide",
+  "category": ["AI Film Production", "Pitch Films", "Mood Films", "Look Development", "AI Storyboards"],
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Agencies, brands, artists, production companies, luxury & fashion"
+  },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "description": "AI moodfilms with rights anticipated from day one. Same partner from pitch to broadcast-ready film."
+  }
+};
+---
+
+<BaseLayout
+  title="MOODFILM — AI moodfilm, look dev & pitch films · Moodwalkrs Paris"
+  description="MOODFILM is the Moodwalkrs format for AI moodfilms, animatics, AI storyboards, look development and treatment visuals. Sell the idea before you sell the production. AI creative studio · Paris."
+  keywords="moodfilm, moodfilm IA, moodfilm AI, AI moodfilm, mood film IA, mood film AI, pitch film AI, AI pitch film, AI animatic, AI storyboard, look dev IA, treatment film, AI creative studio, Moodwalkrs, studio IA Paris"
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <section class="clients-page moodfilm-page">
+    <!-- SEO-friendly intro (always visible to crawlers, even before unlock) -->
+    <header class="moodfilm-intro">
+      <div class="section__label">[ MOODFILM · Look dev &amp; pitch films ]</div>
+      <h1 class="moodfilm-intro__title">MOODFILM<span class="punct">.</span></h1>
+      <p class="moodfilm-intro__lead">
+        <strong>MOODFILM</strong> is the Moodwalkrs format for <em>look development</em> and <em>pitch films</em> —
+        AI-driven moodfilms, animatics, treatment visuals and AI storyboards. Built to <em>convince before you produce</em>.
+      </p>
+      <p class="moodfilm-intro__sub">
+        From a brief, we generate a moodfilm that captures tone, pace and intention.
+        When the project moves into production, the same creative team carries it through —
+        combining AI, live action, craft and post-production whenever needed,
+        with rights anticipated from day one.
+      </p>
+    </header>
+
+    <!-- Password gate (Mood vault behind the intro) -->
+    <div class="gate" id="gate" data-pwd={MOODFILM_PASSWORD}>
+      <div class="gate__inner">
+        <div class="gate__label">[ Private — Moodfilm vault ]</div>
+        <h2 class="gate__title">Locked.</h2>
+        <p class="gate__sub">Type your access key to view the confidential moodfilm selection.</p>
+        <form class="gate__form" id="gate-form" autocomplete="off">
+          <input
+            class="gate__input"
+            id="gate-input"
+            type="password"
+            name="key"
+            placeholder="Access key"
+            aria-label="Access key"
+            spellcheck="false"
+            autocapitalize="off"
+            autofocus
+          />
+          <button class="gate__btn" type="submit">Unlock →</button>
+        </form>
+        <div class="gate__error" id="gate-error" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <!-- Vault (revealed on unlock) -->
+    <div class="vault" id="vault" hidden>
+      <div class="vault__head">
+        <div class="vault__meta">
+          <div class="section__label">Moodfilm · Private selection</div>
+          <h2 class="section__title">Selected <em>moodfilms.</em></h2>
+        </div>
+        <button class="vault__signout" id="vault-signout" type="button">Sign out</button>
+      </div>
+
+      {films.length === 0 ? (
+        <p class="vault__empty">
+          The vault is empty for now. Mark a project with <code>private: true</code> (or add a category containing "mood") in <code>src/data/projects.ts</code> and it'll appear here.
+        </p>
+      ) : (
+        <div class="work-grid">
+          {films.map((p, i) => {
+            const span = p.span ? `span-${p.span}` : 'span-md';
+            const hasPreview = !!p.preview;
+            return (
+              <a class={`work-card ${span} ${hasPreview ? 'has-video' : ''}`} href={`/project/${p.slug}`}>
+                {hasPreview ? (
+                  <>
+                    <div class="work-card__media" style={`background-image:url('${p.cover}')`}></div>
+                    <video class="work-card__video" src={p.preview} poster={p.cover} muted loop playsinline preload="metadata"></video>
+                  </>
+                ) : (
+                  <div class="work-card__media" style={`background-image:url('${p.cover}')`}></div>
+                )}
+                <div class="work-card__body">
+                  <div class="work-card__title">{p.title}</div>
+                  <div class="work-card__meta">{p.category}<br/>{p.year}</div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <script>
+    const gate = document.getElementById('gate') as HTMLElement | null;
+    const vault = document.getElementById('vault') as HTMLElement | null;
+    const form = document.getElementById('gate-form') as HTMLFormElement | null;
+    const input = document.getElementById('gate-input') as HTMLInputElement | null;
+    const errorEl = document.getElementById('gate-error') as HTMLElement | null;
+    const signoutBtn = document.getElementById('vault-signout') as HTMLButtonElement | null;
+    const PWD = gate?.dataset.pwd || '';
+    const LS_KEY = 'mw_moodfilm_unlocked';
+
+    function unlock() {
+      if (!gate || !vault) return;
+      gate.hidden = true;
+      vault.hidden = false;
+      document.querySelectorAll<HTMLVideoElement>('.work-card.has-video video.work-card__video').forEach((video) => {
+        const card = video.closest('.work-card') as HTMLAnchorElement | null;
+        card?.addEventListener('mouseenter', () => { video.currentTime = 0; video.play().catch(() => {}); });
+        card?.addEventListener('mouseleave', () => { video.pause(); });
+      });
+    }
+
+    if (localStorage.getItem(LS_KEY) === '1') unlock();
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const value = (input?.value || '').trim();
+      if (value === PWD) {
+        localStorage.setItem(LS_KEY, '1');
+        if (errorEl) errorEl.textContent = '';
+        unlock();
+      } else {
+        if (errorEl) errorEl.textContent = 'Wrong key.';
+        input?.classList.add('gate__input--shake');
+        setTimeout(() => input?.classList.remove('gate__input--shake'), 500);
+      }
+    });
+
+    signoutBtn?.addEventListener('click', () => {
+      localStorage.removeItem(LS_KEY);
+      location.reload();
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .moodfilm-intro {
+    max-width: 760px;
+    margin: 0 auto 80px;
+    text-align: center;
+  }
+  .moodfilm-intro__title {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 11vw, 180px);
+    line-height: .9;
+    letter-spacing: -.04em;
+    text-transform: uppercase;
+    margin: 16px 0 32px;
+  }
+  .moodfilm-intro__title .punct { color: var(--acid); }
+  .moodfilm-intro__lead {
+    font-size: clamp(18px, 2.2vw, 26px);
+    line-height: 1.4;
+    max-width: 36ch;
+    margin: 0 auto 20px;
+  }
+  .moodfilm-intro__lead em {
+    font-style: normal;
+    color: var(--acid);
+  }
+  .moodfilm-intro__sub {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 56ch;
+    margin: 0 auto;
+  }
+</style>

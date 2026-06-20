@@ -1,5 +1,11 @@
 ---
-interface Item { num: string; title: string; desc: string; }
+interface Item {
+  num: string;
+  title: string;
+  desc: string;
+  /** Optional link — when set, the card becomes clickable. */
+  href?: string;
+}
 interface Props {
   label: string;
   title: string;
@@ -19,15 +25,22 @@ const { label, title, rightMeta, items } = Astro.props;
   </div>
 
   <div class="caps reveal-stagger">
-    {items.map((it) => (
-      <div class="cap">
-        <div class="cap__num">{it.num}</div>
-        <div>
-          <h3 class="cap__title">{it.title}</h3>
-          <p class="cap__desc">{it.desc}</p>
-        </div>
-        <div class="cap__arrow">↗</div>
-      </div>
-    ))}
+    {items.map((it) => {
+      const inner = (
+        <>
+          <div class="cap__num">{it.num}</div>
+          <div>
+            <h3 class="cap__title">{it.title}</h3>
+            <p class="cap__desc">{it.desc}</p>
+          </div>
+          <div class="cap__arrow">↗</div>
+        </>
+      );
+      return it.href ? (
+        <a class="cap cap--link" href={it.href}>{inner}</a>
+      ) : (
+        <div class="cap">{inner}</div>
+      );
+    })}
   </div>
 </section>

@@ -2,40 +2,50 @@
 interface Props {
   kicker?: string;
   kickerRight?: string;
-  text: string;          // Use {curly braces} to wrap acid-highlighted segments
-  quote?: string;        // Optional pull quote rendered below the main text
+  /**
+   * Body copy. Single string = one paragraph (legacy).
+   * Array of strings = several paragraphs (each rendered as its own block).
+   * Use `{curly braces}` to wrap chrome-highlighted segments.
+   */
+  text: string | string[];
+  quote?: string;
   metaLeft?: string;
   metaRight?: string;
 }
 
 const { kicker, kickerRight, text, quote, metaLeft, metaRight } = Astro.props;
 
-// Parse {highlight} markers into segments, then split each segment into words.
-type Seg = { text: string; acid: boolean };
-const segments: Seg[] = [];
-const re = /\{([^}]+)\}/g;
-let last = 0;
-let m: RegExpExecArray | null;
-while ((m = re.exec(text)) !== null) {
-  if (m.index > last) segments.push({ text: text.slice(last, m.index), acid: false });
-  segments.push({ text: m[1], acid: true });
-  last = m.index + m[0].length;
-}
-if (last < text.length) segments.push({ text: text.slice(last), acid: false });
+const paragraphs: string[] = Array.isArray(text) ? text : [text];
 
-// Break into words (keeping the acid flag)
+// Word-wrapping parser (per paragraph) — splits {highlight} segments into
+// .word spans, with .acid for highlighted ones. Same logic as before, but
+// now run once per paragraph so we can render them as separate <p> blocks.
 type Word = { text: string; acid: boolean };
-const words: Word[] = [];
-segments.forEach((s) => {
-  const parts = s.text.split(/(\s+)/);
-  parts.forEach((p) => {
-    if (p.trim() === '') {
-      if (p.length) words.push({ text: p, acid: false }); // whitespace placeholder
-    } else {
-      words.push({ text: p, acid: s.acid });
-    }
+function parseParagraph(input: string): Word[] {
+  const segments: { text: string; acid: boolean }[] = [];
+  const re = /\{([^}]+)\}/g;
+  let last = 0; let m: RegExpExecArray | null;
+  while ((m = re.exec(input)) !== null) {
+    if (m.index > last) segments.push({ text: input.slice(last, m.index), acid: false });
+    segments.push({ text: m[1], acid: true });
+    last = m.index + m[0].length;
+  }
+  if (last < input.length) segments.push({ text: input.slice(last), acid: false });
+
+  const words: Word[] = [];
+  segments.forEach((s) => {
+    s.text.split(/(\s+)/).forEach((p) => {
+      if (p.trim() === '') {
+        if (p.length) words.push({ text: p, acid: false });
+      } else {
+        words.push({ text: p, acid: s.acid });
+      }
+    });
   });
-});
+  return words;
+}
+
+const parsed: Word[][] = paragraphs.map(parseParagraph);
 ---
 
 <section class="manifesto" id="vision">
@@ -46,15 +56,19 @@ segments.forEach((s) => {
     </div>
   )}
 
-  <p class="manifesto__text" id="manifestoText">
-    {words.map((w) =>
-      w.text.trim() === '' ? (
-        <>{w.text}</>
-      ) : (
-        <span class={`word ${w.acid ? 'acid' : ''}`}>{w.text}</span>
-      )
-    )}
-  </p>
+  <div class="manifesto__body" id="manifestoText">
+    {parsed.map((words, i) => (
+      <p class={`manifesto__text manifesto__text--p${i + 1}`}>
+        {words.map((w) =>
+          w.text.trim() === '' ? (
+            <>{w.text}</>
+          ) : (
+            <span class={`word ${w.acid ? 'acid' : ''}`}>{w.text}</span>
+          )
+        )}
+      </p>
+    ))}
+  </div>
 
   {quote && (
     <blockquote class="manifesto__quote">

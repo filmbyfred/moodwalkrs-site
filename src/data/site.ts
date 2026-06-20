@@ -10,8 +10,9 @@ export const site = {
 
   nav: [
     { label: "Work",     href: "/#work" },
-    { label: "Vision",   href: "/#vision" },
     { label: "Services", href: "/#services" },
+    { label: "Moodfilm", href: "/moodfilm" },
+    { label: "Vision",   href: "/#vision" },
     { label: "Crew",     href: "/#crew" },
     { label: "Clients",  href: "/clients" },
     { label: "Contact",  href: "/#contact" },

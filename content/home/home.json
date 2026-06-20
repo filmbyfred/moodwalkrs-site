@@ -17,7 +17,12 @@
     {
       "_template": "marquee",
       "reverse": false,
-      "words": ["Create", "Produce", "Direct", "Accelerate", "Create", "Produce", "Direct", "Accelerate"]
+      "words": [
+        "We help ideas become films.",
+        "We help ideas become films.",
+        "We help ideas become films.",
+        "We help ideas become films."
+      ]
     },
     {
       "_template": "statement",
@@ -57,62 +62,64 @@
       }
     },
     {
-      "_template": "marquee",
-      "reverse": true,
-      "words": ["Pro-grade AI", "Pro-grade craft", "Pro-grade soul", "Pro-grade speed", "Pro-grade AI", "Pro-grade craft"]
-    },
-    {
-      "_template": "manifesto",
-      "kicker": "[ 02 · VISION ]",
-      "kickerRight": "Our Corpus",
-      "text": "Tools are built to {remove friction}. Processes are shaped to protect intention. Precision becomes a habit. Creativity and quality are the {outcome}.",
-      "quote": "We need to move fast through AI timespace. Bending production time is the key to give creativity space.",
-      "metaLeft": "— Moodwalkrs, 2026",
-      "metaRight": "We bend time. We keep the soul."
+      "_template": "statement",
+      "size": "lg",
+      "align": "center",
+      "text": "From <em>moodfilm</em> to <em>broadcast-ready film</em>. One creative territory, one production partner."
     },
     {
       "_template": "capabilities",
-      "label": "03 · What we do",
+      "label": "02 · What we ship",
       "title": "What we <em>ship.</em>",
       "rightMeta": "Five offers. End-to-end, from brief to broadcast.",
       "items": [
         {
           "num": "01",
           "title": "AI Film\nProduction",
-          "desc": "Commercials, music videos, brand films, social assets. Directed end-to-end, finished cinema-grade."
+          "desc": "Commercials, music videos, brand films, social assets. Directed end-to-end, finished cinema-grade.",
+          "href": "/#work"
         },
         {
           "num": "02",
           "title": "AI Image\nCampaigns",
-          "desc": "Key visuals, editorial series, product worlds, fashion imagery. Hero shots ready for print, OOH and digital."
+          "desc": "Key visuals, editorial series, product worlds, fashion imagery. Hero shots ready for print, OOH and digital.",
+          "href": "/#work"
         },
         {
           "num": "03",
           "title": "MOODFILM",
-          "desc": "Mood films, animatics, AI storyboards, treatment visuals. Look dev & pitch films — sell the idea before you sell the production."
+          "desc": "Mood films, animatics, AI storyboards, treatment visuals. Look dev & pitch films — sell the idea before you sell the production.",
+          "href": "/moodfilm"
         },
         {
           "num": "04",
           "title": "Hybrid\nProduction / VFX",
-          "desc": "Live action, CGI, AI layers, compositing, finishing. Real shoots augmented with generative pipelines."
+          "desc": "Live action, CGI, AI layers, compositing, finishing. Real shoots augmented with generative pipelines.",
+          "href": "/#work"
         },
         {
           "num": "05",
-          "title": "Custom AI\nPipelines",
-          "desc": "LoRAs, workflows, internal creative tools, brand-specific systems. Your team runs at a different clock."
+          "title": "Rights\nMatter",
+          "desc": "We build projects that can evolve into usable assets — music, talent, imagery and distribution rights considered from the start."
         }
       ]
     },
     {
-      "_template": "statement",
-      "size": "lg",
-      "align": "center",
-      "text": "AI is <em>not</em> the aesthetic. It is the production engine. Taste, direction and craft remain <em>human-led</em>."
+      "_template": "manifesto",
+      "kicker": "[ 03 · VISION ]",
+      "kickerRight": "Filmmakers first",
+      "text": [
+        "We don't see AI and production as separate worlds.",
+        "We are {filmmakers first}. AI is simply one of the tools we use to {explore, convince and accelerate} ideas.",
+        "Drawing on our directing and production backgrounds, we combine AI, live action, craft and post-production whenever the project requires it — always {in service of the story}."
+      ],
+      "metaLeft": "— Moodwalkrs, 2026",
+      "metaRight": "We bend time. We keep the soul."
     },
     {
       "_template": "use_cases",
       "label": "04 · Use cases",
-      "title": "Built for <em>who</em> sells stories.",
+      "title": "Built to <em>convince</em> before you produce.",
       "items": [
         {
           "audience": "For agencies",
