@@ -42,7 +42,12 @@ const creativeWorkSchema = {
   ogImage={project.cover}
   keywords={`${project.title}, ${project.category}, ${project.client ?? ''}, Moodwalkrs, AI creative studio, AI video production`}
 >
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(creativeWorkSchema)} />
+  {project.private && (
+    <meta slot="head" name="robots" content="noindex, nofollow" />
+  )}
+  {!project.private && (
+    <script slot="head" type="application/ld+json" set:html={JSON.stringify(creativeWorkSchema)} />
+  )}
   <section class="project">
     <a class="project__back" href="/#work">← Back to work</a>
 

@@ -56,30 +56,34 @@ const CLIENT_PASSWORD = "moodwalkrs-2026";
           The vault is empty for now. Once private films are added to <code>src/data/projects.ts</code> with <code>private: true</code>, they'll show up here.
         </p>
       ) : (
-        <div class="work-grid">
-          {films.map((p, i) => {
-            const span = p.span ? `span-${p.span}` : 'span-md';
-            const hasPreview = !!p.preview;
-            return (
-              <a class={`work-card ${span} ${hasPreview ? 'has-video' : ''}`} href={`/project/${p.slug}`}>
-                {hasPreview ? (
-                  <>
-                    <div class="work-card__media" style={`background-image:url('${p.cover}')`}></div>
-                    <video class="work-card__video" src={p.preview} poster={p.cover} muted loop playsinline preload="metadata"></video>
-                  </>
-                ) : (
-                  <div class="work-card__media" style={`background-image:url('${p.cover}')`}></div>
-                )}
-                <div class="work-card__index">{String(i + 1).padStart(2, '0')}</div>
-                {p.tag && <div class="work-card__tag">{p.tag}</div>}
-                <div class="work-card__body">
-                  <div class="work-card__title">{p.title}</div>
-                  <div class="work-card__meta">{p.category}<br/>{p.year}</div>
+        <div class="vault-gallery">
+          {films.map((p, i) => (
+            <article class="vault-film" id={p.slug}>
+              <div class="vault-film__player">
+                <video
+                  class="vault-film__video"
+                  src={p.video}
+                  poster={p.cover}
+                  controls
+                  playsinline
+                  preload="metadata"
+                ></video>
+              </div>
+              <div class="vault-film__meta">
+                <div class="vault-film__index">{String(i + 1).padStart(2, '0')}</div>
+                <div class="vault-film__info">
+                  <h2 class="vault-film__title">{p.title}</h2>
+                  <div class="vault-film__row">
+                    {p.client && <span class="vault-film__chip">{p.client}</span>}
+                    <span class="vault-film__chip">{p.category}</span>
+                    <span class="vault-film__chip">{p.year}</span>
+                  </div>
+                  {p.role && <p class="vault-film__role">{p.role}</p>}
+                  {p.description && <p class="vault-film__desc">{p.description}</p>}
                 </div>
-                <div class="work-card__arrow">→</div>
-              </a>
-            );
-          })}
+              </div>
+            </article>
+          ))}
         </div>
       )}
     </div>
@@ -99,11 +103,12 @@ const CLIENT_PASSWORD = "moodwalkrs-2026";
       if (!gate || !vault) return;
       gate.hidden = true;
       vault.hidden = false;
-      // autoplay any preview videos that were paused
-      document.querySelectorAll<HTMLVideoElement>('.work-card.has-video video.work-card__video').forEach((video) => {
-        const card = video.closest('.work-card') as HTMLAnchorElement | null;
-        card?.addEventListener('mouseenter', () => { video.currentTime = 0; video.play().catch(() => {}); });
-        card?.addEventListener('mouseleave', () => { video.pause(); });
+      // Pause any other video when one starts playing — one film at a time.
+      const videos = document.querySelectorAll<HTMLVideoElement>('.vault-film__video');
+      videos.forEach((v) => {
+        v.addEventListener('play', () => {
+          videos.forEach((other) => { if (other !== v) other.pause(); });
+        });
       });
     }
 

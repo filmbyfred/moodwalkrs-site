@@ -5,6 +5,13 @@ User-agent: *
 Allow: /
 Disallow: /clients
 Disallow: /clients/
+# Private client vault project pages (referenced from /clients only).
+Disallow: /project/saudi-not-a-football-country
+Disallow: /project/saudi-not-madness
+Disallow: /project/peugeot-e208
+Disallow: /project/oreo
+Disallow: /project/danone
+Disallow: /project/sonepar
 
 # Google Image / Bing Image — also allow film posters
 User-agent: Googlebot-Image

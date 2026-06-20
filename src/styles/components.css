@@ -987,6 +987,11 @@
   justify-content: center;
   min-height: 60vh;
 }
+/* Native [hidden] must beat the .gate display:flex rule above. */
+.gate[hidden],
+.vault[hidden] {
+  display: none !important;
+}
 .gate__inner {
   max-width: 540px;
   text-align: center;
@@ -1115,6 +1120,103 @@
 
 @media (max-width: 520px) {
   .gate__form { flex-direction: column; }
+}
+
+/* ===== /clients video gallery ===== */
+.vault-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  margin-top: 40px;
+}
+.vault-film {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid var(--line);
+}
+.vault-film:last-child {
+  border-bottom: none;
+}
+.vault-film__player {
+  position: relative;
+  width: 100%;
+  background: #000;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+.vault-film__video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  background: #000;
+}
+.vault-film__meta {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.vault-film__index {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .2em;
+  color: var(--muted);
+  padding-top: 8px;
+}
+.vault-film__info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.vault-film__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: .95;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.vault-film__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.vault-film__chip {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+.vault-film__role {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--fg);
+  margin: 4px 0 0;
+}
+.vault-film__desc {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+  max-width: 60ch;
+  margin: 4px 0 0;
+}
+@media (max-width: 720px) {
+  .vault-gallery { gap: 56px; }
+  .vault-film__meta {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .vault-film__index { padding-top: 0; }
 }
 
 /* Project page */

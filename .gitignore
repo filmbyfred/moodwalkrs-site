@@ -26,3 +26,6 @@ yarn-error.log*
 
 # Source masters — raw films stay local, only the web-optimized versions in public/films/ get committed
 /FILMS/
+
+# Raw masters — never push (use Drive instead)
+CLIENT FILMS/
