@@ -12,6 +12,8 @@ Disallow: /project/peugeot-e208
 Disallow: /project/oreo
 Disallow: /project/danone
 Disallow: /project/sonepar
+Disallow: /project/flatsville
+Disallow: /project/jeep-air-freshener
 
 # Google Image / Bing Image — also allow film posters
 User-agent: Googlebot-Image

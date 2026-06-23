@@ -28,6 +28,40 @@ export interface Project {
 export const allProjects: Project[] = [
   // ===== PRIVATE CLIENT VAULT (visible only on password-protected /clients) =====
   {
+    title: "Flatsville",
+    slug: "flatsville",
+    category: "AI Film",
+    tag: "Client",
+    client: "Flatsville",
+    role: "AI Moodfilm · Direction",
+    year: 2026,
+    cover: "/films/flatsville-poster.jpg",
+    preview: "/films/flatsville-preview.mp4",
+    video: "/films/flatsville.mp4",
+    description: "AI-driven film for Flatsville — flat-design world, cinematic motion.",
+    gallery: [],
+    span: "lg",
+    ratio: "16:9",
+    private: true
+  },
+  {
+    title: "Jeep — Air Freshener",
+    slug: "jeep-air-freshener",
+    category: "Automotive Commercial",
+    tag: "Client",
+    client: "Jeep",
+    role: "AI Moodfilm · Direction",
+    year: 2026,
+    cover: "/films/jeep-air-freshener-poster.jpg",
+    preview: "/films/jeep-air-freshener-preview.mp4",
+    video: "/films/jeep-air-freshener.mp4",
+    description: "AI moodfilm for Jeep — Air Freshener concept, off-road meets product.",
+    gallery: [],
+    span: "md",
+    ratio: "16:9",
+    private: true
+  },
+  {
     title: "Saudi — Not a Football Country",
     slug: "saudi-not-a-football-country",
     category: "BETC Commercial",
