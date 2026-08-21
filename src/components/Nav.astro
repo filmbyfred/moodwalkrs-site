@@ -14,4 +14,66 @@ import { site } from '../data/site';
   </div>
 
   <a class="nav__cta" href={site.cta.href}>{site.cta.label}</a>
+
+  <!-- Mobile burger (hidden on desktop) -->
+  <button
+    class="nav__burger"
+    id="nav-burger"
+    type="button"
+    aria-label="Open menu"
+    aria-expanded="false"
+    aria-controls="nav-drawer"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+
+<!-- Mobile fullscreen drawer -->
+<div class="nav-drawer" id="nav-drawer" hidden>
+  <div class="nav-drawer__inner">
+    <ul class="nav-drawer__links">
+      {site.nav.map((item) => (
+        <li><a href={item.href} data-drawer-link>{item.label}</a></li>
+      ))}
+    </ul>
+    <a class="nav-drawer__cta" href={site.cta.href} data-drawer-link>{site.cta.label}</a>
+    <div class="nav-drawer__foot">
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <span>{site.location}</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const burger = document.getElementById('nav-burger') as HTMLButtonElement | null;
+  const drawer = document.getElementById('nav-drawer') as HTMLElement | null;
+  const links = document.querySelectorAll<HTMLAnchorElement>('[data-drawer-link]');
+
+  function setOpen(open: boolean) {
+    if (!burger || !drawer) return;
+    burger.setAttribute('aria-expanded', String(open));
+    burger.classList.toggle('is-open', open);
+    if (open) {
+      drawer.hidden = false;
+      requestAnimationFrame(() => drawer.classList.add('is-open'));
+      document.body.style.overflow = 'hidden';
+    } else {
+      drawer.classList.remove('is-open');
+      document.body.style.overflow = '';
+      setTimeout(() => { if (drawer) drawer.hidden = true; }, 300);
+    }
+  }
+
+  burger?.addEventListener('click', () => {
+    const open = burger.getAttribute('aria-expanded') === 'true';
+    setOpen(!open);
+  });
+
+  links.forEach((a) => a.addEventListener('click', () => setOpen(false)));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+</script>
